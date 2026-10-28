@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 90" fill="none">
+  <defs>
+    <linearGradient id="whiteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00A3FF"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(5, 5)">
+    <rect width="80" height="80" rx="20" fill="#0F2444"/>
+    <path d="M40 16 L62 29 L62 55 L40 68 L18 55 L18 29 Z" stroke="url(#whiteGrad)" stroke-width="5" stroke-linejoin="round" fill="none"/>
+    <circle cx="40" cy="42" r="11" fill="url(#whiteGrad)"/>
+  </g>
+  <text x="105" y="57" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="44" font-weight="800" letter-spacing="-0.5" fill="#FFFFFF">Oryn<tspan fill="#38BDF8">Tech</tspan></text>
+</svg>

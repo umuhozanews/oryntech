@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>API Explorer - creiden.com</title>
+<style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #111827;
+      --border: #1f293d;
+      --text: #f3f4f6;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --method-get: #10b981;
+      --method-post: #3b82f6;
+      --method-put: #f59e0b;
+      --method-del: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 24px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .title-area h1 { font-size: 24px; color: #fff; display: flex; align-items: center; gap: 10px; }
+    .badge {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .search-bar {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 12px;
+    }
+    .search-input {
+      flex: 1;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+    }
+    .search-input:focus { border-color: var(--accent); }
+    .filter-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      color: #fff;
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.1);
+    }
+    .endpoints-list { display: flex; flex-direction: column; gap: 14px; }
+    .endpoint-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .endpoint-card:hover { border-color: #374151; }
+    .endpoint-header {
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+    .endpoint-summary { display: flex; align-items: center; gap: 12px; flex: 1; overflow: hidden; }
+    .method-tag {
+      font-weight: 700;
+      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 5px;
+      letter-spacing: 0.5px;
+    }
+    .method-GET { background: rgba(16, 185, 129, 0.2); color: var(--method-get); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .method-POST { background: rgba(59, 130, 246, 0.2); color: var(--method-post); border: 1px solid rgba(59, 130, 246, 0.3); }
+    .method-PUT { background: rgba(245, 158, 11, 0.2); color: var(--method-put); border: 1px solid rgba(245, 158, 11, 0.3); }
+    .method-DELETE { background: rgba(239, 68, 68, 0.2); color: var(--method-del); border: 1px solid rgba(239, 68, 68, 0.3); }
+    .endpoint-url { font-family: monospace; font-size: 14px; color: #e2e8f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .status-tag { font-size: 13px; font-weight: 600; padding: 2px 8px; border-radius: 4px; }
+    .status-200 { color: #10b981; }
+    .status-err { color: #ef4444; }
+    .endpoint-body {
+      display: none;
+      padding: 16px 18px;
+      background: #0b0f19;
+      border-top: 1px solid var(--border);
+    }
+    .section-title { font-size: 12px; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 6px; }
+    pre {
+      background: #030712;
+      border: 1px solid #1f2937;
+      padding: 12px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 12px;
+      color: #93c5fd;
+      overflow-x: auto;
+      max-height: 350px;
+      margin-bottom: 14px;
+    }
+    .actions-bar { display: flex; gap: 10px; margin-top: 10px; }
+    .action-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .action-btn:hover { background: #334155; color: #fff; }
+    .empty-state { text-align: center; padding: 60px 20px; color: var(--muted); }
+  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "OrynTech",
+  "url": "https://www.oryntechltd.com",
+  "logo": "https://www.oryntechltd.com/assets/oryntech/oryntech-logo.svg",
+  "email": "info@oryntechltd.com",
+  "telephone": "+250798989741",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Norsken House",
+    "addressLocality": "Kigali",
+    "addressCountry": "RW"
+  }
+}
+</script></head>
+<body>
+<div class="header">
+<div class="title-area">
+<h1>⚡ Live API Interception Explorer <span class="badge" id="countBadge">0 Endpoints</span></h1>
+<p style="color: var(--muted); font-size: 13px; margin-top: 4px;">Captured live dynamic APIs &amp; JSON feeds from <strong>creiden.com</strong></p>
+</div>
+<a class="action-btn" href="../index.html" style="text-decoration: none; padding: 8px 16px;">← Back to Offline Site</a>
+</div>
+<div class="search-bar">
+<input class="search-input" id="searchInput" placeholder="Search endpoint path, query parameters, or payload content..." type="text"/>
+<button class="filter-btn active" onclick="setFilter('ALL')">All</button>
+<button class="filter-btn" onclick="setFilter('GET')">GET</button>
+<button class="filter-btn" onclick="setFilter('POST')">POST</button>
+<button class="filter-btn" onclick="setFilter('JSON')">JSON Only</button>
+</div>
+<div class="endpoints-list" id="endpointsList"></div>
+<script>
+    const data = [{"id": 1, "method": "GET", "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json", "endpoint": "/npm/world-atlas@2/countries-110m.json", "domain": "cdn.jsdelivr.net", "status": 200, "content_type": "application/json; charset=utf-8", "query_params": {}, "post_data": null, "request_headers": {"accept": "*/*", "referer": "https://www.oryntechltd.com/", "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36", "sec-ch-ua": "\"HeadlessChrome\";v=\"149\", \"Chromium\";v=\"149\", \"Not)A;Brand\";v=\"24\"", "sec-ch-ua-mobile": "?0", "sec-ch-ua-platform": "\"Windows\""}, "response_file": "responses/api_1_npm_world-atlas_2_countries-110m_json.json", "body_bytes": 107760, "is_json": true, "curl": "curl -X GET \"https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json\" \\\n  -H \"accept: */*\" \\\n  -H \"referer: https://www.oryntechltd.com/\" \\\n  -H \"user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36\" \\\n  -H \"sec-ch-ua: \\\"HeadlessChrome\\\";v=\\\"149\\\", \\\"Chromium\\\";v=\\\"149\\\", \\\"Not)A;Brand\\\";v=\\\"24\\\"\" \\\n  -H \"sec-ch-ua-mobile: ?0\" \\\n  -H \"sec-ch-ua-platform: \\\"Windows\\\"\"", "preview": "{\"type\":\"Topology\",\"objects\":{\"countries\":{\"type\":\"GeometryCollection\",\"geometries\":[{\"type\":\"MultiPolygon\",\"arcs\":[[[0]],[[1]]],\"id\":\"242\",\"properties\":{\"name\":\"Fiji\"}},{\"type\":\"Polygon\",\"arcs\":[[2,3,4,5,6,7,8,9,10]],\"id\":\"834\",\"properties\":{\"name\":\"Tanzania\"}},{\"type\":\"Polygon\",\"arcs\":[[11,12,13,14]],\"id\":\"732\",\"properties\":{\"name\":\"W. Sahara\"}},...", "timestamp": "2026-10-26T18:58:23.654742"}, {"id": 2, "method": "GET", "url": "https://www.oryntechltd.com/en/cookies?_rsc=eqsiq", "endpoint": "/en/cookies", "domain": "creiden.com", "status": 200, "content_type": "text/x-component", "query_params": {"_rsc": ["eqsiq"]}, "post_data": null, "request_headers": {"accept": "*/*", "cookie": "NEXT_LOCALE=en", "referer": "https://www.oryntechltd.com/en", "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36", "next-router-prefetch": "1", "next-router-segment-prefetch": "/_tree", "next-url": "/en", "rsc": "1", "sec-ch-ua": "\"HeadlessChrome\";v=\"149\", \"Chromium\";v=\"149\", \"Not)A;Brand\";v=\"24\"", "sec-ch-ua-mobile": "?0", "sec-ch-ua-platform": "\"Windows\""}, "response_file": "responses/api_2_en_cookies.json", "body_bytes": 2884, "is_json": false, "curl": "curl -X GET \"https://www.oryntechltd.com/en/cookies?_rsc=eqsiq\" \\\n  -H \"accept: */*\" \\\n  -H \"referer: https://www.oryntechltd.com/en\" \\\n  -H \"user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36\" \\\n  -H \"next-router-prefetch: 1\" \\\n  -H \"next-router-segment-prefetch: /_tree\" \\\n  -H \"next-url: /en\" \\\n  -H \"rsc: 1\" \\\n  -H \"sec-ch-ua: \\\"HeadlessChrome\\\";v=\\\"149\\\", \\\"Chromium\\\";v=\\\"149\\\", \\\"Not)A;Brand\\\";v=\\\"24\\\"\" \\\n  -H \"sec-ch-ua-mobile: ?0\" \\\n  -H \"sec-ch-ua-platform: \\\"Windows\\\"\"", "preview": ":HL[\"/_next/static/chunks/9077382a1f4ed522.css\",\"style\"]\n:HL[\"/_next/static/chunks/247428e4b86b78ed.css\",\"style\"]\n:HL[\"/_next/static/chunks/20f43edc58b2b642.css\",\"style\"]\n:HL[\"/_next/static/chunks/3a8cfdd29ff802d5.css\",\"style\"]\n:HL[\"/_next/static/chunks/ae88478848379761.css\",\"style\"]\n:HL[\"/_next/static/media/043b82ab31bba5a4-s.p.b67c2e04.woff2\",\"fo...", "timestamp": "2026-10-26T18:58:23.667400"}, {"id": 3, "method": "GET", "url": "https://www.oryntechltd.com/en/services?_rsc=eqsiq", "endpoint": "/en/services", "domain": "creiden.com", "status": 200, "content_type": "text/x-component", "query_params": {"_rsc": ["eqsiq"]}, "post_data": null, "request_headers": {"accept": "*/*", "cookie": "NEXT_LOCALE=en", "referer": "https://www.oryntechltd.com/en", "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36", "next-router-prefetch": "1", "next-router-segment-prefetch": "/_tree", "next-url": "/en", "rsc": "1", "sec-ch-ua": "\"HeadlessChrome\";v=\"149\", \"Chromium\";v=\"149\", \"Not)A;Brand\";v=\"24\"", "sec-ch-ua-mobile": "?0", "sec-ch-ua-platform": "\"Windows\""}, "response_file": "responses/api_3_en_services.json", "body_bytes": 2885, "is_json": false, "curl": "curl -X GET \"https://www.oryntechltd.com/en/services?_rsc=eqsiq\" \\\n  -H \"accept: */*\" \\\n  -H \"referer: https://www.oryntechltd.com/en\" \\\n  -H \"user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36\" \\\n  -H \"next-router-prefetch: 1\" \\\n  -H \"next-router-segment-prefetch: /_tree\" \\\n  -H \"next-url: /en\" \\\n  -H \"rsc: 1\" \\\n  -H \"sec-ch-ua: \\\"HeadlessChrome\\\";v=\\\"149\\\", \\\"Chromium\\\";v=\\\"149\\\", \\\"Not)A;Brand\\\";v=\\\"24\\\"\" \\\n  -H \"sec-ch-ua-mobile: ?0\" \\\n  -H \"sec-ch-ua-platform: \\\"Windows\\\"\"", "preview": ":HL[\"/_next/static/chunks/9077382a1f4ed522.css\",\"style\"]\n:HL[\"/_next/static/chunks/247428e4b86b78ed.css\",\"style\"]\n:HL[\"/_next/static/chunks/20f43edc58b2b642.css\",\"style\"]\n:HL[\"/_next/static/chunks/3a8cfdd29ff802d5.css\",\"style\"]\n:HL[\"/_next/static/media/043b82ab31bba5a4-s.p.b67c2e04.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/s...", "timestamp": "2026-10-26T18:58:23.669402"}, {"id": 4, "method": "GET", "url": "https://www.oryntechltd.com/en/contact?_rsc=eqsiq", "endpoint": "/en/contact", "domain": "creiden.com", "status": 200, "content_type": "text/x-component", "query_params": {"_rsc": ["eqsiq"]}, "post_data": null, "request_headers": {"accept": "*/*", "cookie": "NEXT_LOCALE=en", "referer": "https://www.oryntechltd.com/en", "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36", "next-router-prefetch": "1", "next-router-segment-prefetch": "/_tree", "next-url": "/en", "rsc": "1", "sec-ch-ua": "\"HeadlessChrome\";v=\"149\", \"Chromium\";v=\"149\", \"Not)A;Brand\";v=\"24\"", "sec-ch-ua-mobile": "?0", "sec-ch-ua-platform": "\"Windows\""}, "response_file": "responses/api_4_en_contact.json", "body_bytes": 2826, "is_json": false, "curl": "curl -X GET \"https://www.oryntechltd.com/en/contact?_rsc=eqsiq\" \\\n  -H \"accept: */*\" \\\n  -H \"referer: https://www.oryntechltd.com/en\" \\\n  -H \"user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36\" \\\n  -H \"next-router-prefetch: 1\" \\\n  -H \"next-router-segment-prefetch: /_tree\" \\\n  -H \"next-url: /en\" \\\n  -H \"rsc: 1\" \\\n  -H \"sec-ch-ua: \\\"HeadlessChrome\\\";v=\\\"149\\\", \\\"Chromium\\\";v=\\\"149\\\", \\\"Not)A;Brand\\\";v=\\\"24\\\"\" \\\n  -H \"sec-ch-ua-mobile: ?0\" \\\n  -H \"sec-ch-ua-platform: \\\"Windows\\\"\"", "preview": ":HL[\"/_next/static/chunks/9077382a1f4ed522.css\",\"style\"]\n:HL[\"/_next/static/chunks/247428e4b86b78ed.css\",\"style\"]\n:HL[\"/_next/static/chunks/20f43edc58b2b642.css\",\"style\"]\n:HL[\"/_next/static/chunks/3a8cfdd29ff802d5.css\",\"style\"]\n:HL[\"/_next/static/media/043b82ab31bba5a4-s.p.b67c2e04.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/s...", "timestamp": "2026-10-26T18:58:23.671931"}, {"id": 5, "method": "GET", "url": "https://www.oryntechltd.com/en/work?_rsc=eqsiq", "endpoint": "/en/work", "domain": "creiden.com", "status": 200, "content_type": "text/x-component", "query_params": {"_rsc": ["eqsiq"]}, "post_data": null, "request_headers": {"accept": "*/*", "cookie": "NEXT_LOCALE=en", "referer": "https://www.oryntechltd.com/en", "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36", "next-router-prefetch": "1", "next-router-segment-prefetch": "/_tree", "next-url": "/en", "rsc": "1", "sec-ch-ua": "\"HeadlessChrome\";v=\"149\", \"Chromium\";v=\"149\", \"Not)A;Brand\";v=\"24\"", "sec-ch-ua-mobile": "?0", "sec-ch-ua-platform": "\"Windows\""}, "response_file": "responses/api_5_en_work.json", "body_bytes": 336, "is_json": false, "curl": "curl -X GET \"https://www.oryntechltd.com/en/work?_rsc=eqsiq\" \\\n  -H \"accept: */*\" \\\n  -H \"referer: https://www.oryntechltd.com/en\" \\\n  -H \"user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36\" \\\n  -H \"next-router-prefetch: 1\" \\\n  -H \"next-router-segment-prefetch: /_tree\" \\\n  -H \"next-url: /en\" \\\n  -H \"rsc: 1\" \\\n  -H \"sec-ch-ua: \\\"HeadlessChrome\\\";v=\\\"149\\\", \\\"Chromium\\\";v=\\\"149\\\", \\\"Not)A;Brand\\\";v=\\\"24\\\"\" \\\n  -H \"sec-ch-ua-mobile: ?0\" \\\n  -H \"sec-ch-ua-platform: \\\"Windows\\\"\"", "preview": "0:{\"b\":\"XGyuE4sdN5_SbuQqJIxog\",\"f\":[[[\"\",{\"children\":[[\"locale\",\"en\",\"d\"],{\"children\":[\"work\",{\"children\":[\"__PAGE__\",{},\"$undefined\",\"$undefined\",\"$undefined\",3]},\"$undefined\",\"$undefined\",\"$undefined\",3]},\"$undefined\",\"$undefined\",\"$undefined\",3]},\"$undefined\",\"$undefined\",true,3],null,[null,null],true]],\"q\":\"\",\"i\":false,\"S\":false}\n", "timestamp": "2026-10-26T18:58:23.676939"}, {"id": 6, "method": "GET", "url": "https://www.oryntechltd.com/en/ai-build-rescue/build-check?_rsc=sk0yg", "endpoint": "/en/ai-build-rescue/build-check", "domain": "creiden.com", "status": 200, "content_type": "text/x-component", "query_params": {"_rsc": ["sk0yg"]}, "post_data": null, "request_headers": {"accept": "*/*", "cookie": "NEXT_LOCALE=en", "referer": "https://www.oryntechltd.com/en/ai-build-rescue", "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36", "next-router-prefetch": "1", "next-router-segment-prefetch": "/_tree", "next-url": "/en/ai-build-rescue", "rsc": "1", "sec-ch-ua": "\"HeadlessChrome\";v=\"149\", \"Chromium\";v=\"149\", \"Not)A;Brand\";v=\"24\"", "sec-ch-ua-mobile": "?0", "sec-ch-ua-platform": "\"Windows\""}, "response_file": "responses/api_6_en_ai-build-rescue_build-check.json", "body_bytes": 3033, "is_json": false, "curl": "curl -X GET \"https://www.oryntechltd.com/en/ai-build-rescue/build-check?_rsc=sk0yg\" \\\n  -H \"accept: */*\" \\\n  -H \"referer: https://www.oryntechltd.com/en/ai-build-rescue\" \\\n  -H \"user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36\" \\\n  -H \"next-router-prefetch: 1\" \\\n  -H \"next-router-segment-prefetch: /_tree\" \\\n  -H \"next-url: /en/ai-build-rescue\" \\\n  -H \"rsc: 1\" \\\n  -H \"sec-ch-ua: \\\"HeadlessChrome\\\";v=\\\"149\\\", \\\"Chromium\\\";v=\\\"149\\\", \\\"Not)A;Brand\\\";v=\\\"24\\\"\" \\\n  -H \"sec-ch-ua-mobile: ?0\" \\\n  -H \"sec-ch-ua-platform: \\\"Windows\\\"\"", "preview": ":HL[\"/_next/static/chunks/9077382a1f4ed522.css\",\"style\"]\n:HL[\"/_next/static/chunks/247428e4b86b78ed.css\",\"style\"]\n:HL[\"/_next/static/chunks/20f43edc58b2b642.css\",\"style\"]\n:HL[\"/_next/static/chunks/3a8cfdd29ff802d5.css\",\"style\"]\n:HL[\"/_next/static/media/043b82ab31bba5a4-s.p.b67c2e04.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/s...", "timestamp": "2026-10-26T18:58:43.076966"}];
+    let currentFilter = 'ALL';
+
+    function renderList() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const list = document.getElementById('endpointsList');
+      list.innerHTML = '';
+
+      const filtered = data.filter(item => {
+        if (currentFilter === 'GET' && item.method !== 'GET') return false;
+        if (currentFilter === 'POST' && item.method !== 'POST') return false;
+        if (currentFilter === 'JSON' && !item.is_json) return false;
+        if (!query) return true;
+        return item.url.toLowerCase().includes(query) || 
+               item.endpoint.toLowerCase().includes(query) ||
+               (item.preview && item.preview.toLowerCase().includes(query));
+      });
+
+      document.getElementById('countBadge').innerText = filtered.length + ' Endpoints';
+
+      if (filtered.length === 0) {
+        list.innerHTML = '<div class="empty-state"><h3>No matching API endpoints found</h3><p>Try clearing your search query or switching filters.</p></div>';
+        return;
+      }
+
+      filtered.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'endpoint-card';
+        const statusClass = item.status >= 200 && item.status < 300 ? 'status-200' : 'status-err';
+
+        card.innerHTML = `
+          <div class="endpoint-header" onclick="toggleDetails(${idx})">
+            <div class="endpoint-summary">
+              <span class="method-tag method-${item.method}">${item.method}</span>
+              <span class="endpoint-url">${item.url}</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <span style="font-size:12px; color:var(--muted);">${item.body_bytes} bytes</span>
+              <span class="status-tag ${statusClass}">${item.status}</span>
+            </div>
+          </div>
+          <div class="endpoint-body" id="details-${idx}">
+            <div class="section-title">Replay Command (cURL)</div>
+            <pre>${escapeHtml(item.curl)}</pre>
+
+            <div class="section-title">Captured Response Payload (Preview)</div>
+            <pre>${escapeHtml(item.preview)}</pre>
+
+            <div class="actions-bar">
+              <button class="action-btn" onclick="copyText('${encodeURIComponent(item.curl)}')">📋 Copy cURL</button>
+              <a href="${item.response_file}" target="_blank" class="action-btn" style="text-decoration:none;">📄 Open Full JSON File</a>
+            </div>
+          </div>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    function toggleDetails(idx) {
+      const el = document.getElementById('details-' + idx);
+      if (el) {
+        el.style.display = el.style.display === 'block' ? 'none' : 'block';
+      }
+    }
+
+    function setFilter(f) {
+      currentFilter = f;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      renderList();
+    }
+
+    function copyText(encoded) {
+      const text = decodeURIComponent(encoded);
+      navigator.clipboard.writeText(text).then(() => alert('cURL command copied to clipboard!'));
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    document.getElementById('searchInput').addEventListener('input', renderList);
+    renderList();
+  </script>
+</body>
+</html>

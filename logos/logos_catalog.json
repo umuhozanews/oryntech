@@ -1,0 +1,348 @@
+{
+  "target_url": "https://creiden.com/en",
+  "total_logos": 38,
+  "logos": [
+    {
+      "name": "App Icon (icon)",
+      "type": "Favicon / Touch Icon",
+      "source_url": "https://creiden.com/favicon.ico?favicon.e41ea48e.ico",
+      "local_file": "logos/icon_0_32x32.ico",
+      "filename": "icon_0_32x32.ico",
+      "dimensions": "32x32",
+      "file_size": 4286
+    },
+    {
+      "name": "Vector Brand Logo 1",
+      "type": "Vector SVG Logo",
+      "source_url": "(Inline / Generated)",
+      "local_file": "logos/vector_logo_1.svg",
+      "filename": "vector_logo_1.svg",
+      "dimensions": "0 0 378.57 418.51",
+      "file_size": 824
+    },
+    {
+      "name": "Vector Brand Logo 2",
+      "type": "Vector SVG Logo",
+      "source_url": "(Inline / Generated)",
+      "local_file": "logos/vector_logo_2.svg",
+      "filename": "vector_logo_2.svg",
+      "dimensions": "0 0 710 153.97",
+      "file_size": 1987
+    },
+    {
+      "name": "Image Logo (creiden)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/assets/logomark-white.svg",
+      "local_file": "logos/image_logo_1.svg",
+      "filename": "image_logo_1.svg",
+      "dimensions": "88x88",
+      "file_size": 769
+    },
+    {
+      "name": "Image Logo (aba logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FABA.png&w=3840&q=75",
+      "local_file": "logos/image_logo_2.png",
+      "filename": "image_logo_2.png",
+      "dimensions": "130x150",
+      "file_size": 8090
+    },
+    {
+      "name": "Image Logo (estbrq logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FESTBRQ.png&w=3840&q=75",
+      "local_file": "logos/image_logo_3.png",
+      "filename": "image_logo_3.png",
+      "dimensions": "130x150",
+      "file_size": 3194
+    },
+    {
+      "name": "Image Logo (flipout logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FFlipout.png&w=3840&q=75",
+      "local_file": "logos/image_logo_4.png",
+      "filename": "image_logo_4.png",
+      "dimensions": "130x150",
+      "file_size": 2602
+    },
+    {
+      "name": "Image Logo (in & out logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FIn%2526Out%2520Logo_Transparent.png&w=3840&q=75",
+      "local_file": "logos/image_logo_5.png",
+      "filename": "image_logo_5.png",
+      "dimensions": "130x150",
+      "file_size": 3548
+    },
+    {
+      "name": "Image Logo (ithaka logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FIthaka.png&w=3840&q=75",
+      "local_file": "logos/image_logo_6.png",
+      "filename": "image_logo_6.png",
+      "dimensions": "130x150",
+      "file_size": 2330
+    },
+    {
+      "name": "Image Logo (kiinde logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FKiinde.png&w=3840&q=75",
+      "local_file": "logos/image_logo_7.png",
+      "filename": "image_logo_7.png",
+      "dimensions": "130x150",
+      "file_size": 2822
+    },
+    {
+      "name": "Image Logo (micharity logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2Fmicharity.png&w=3840&q=75",
+      "local_file": "logos/image_logo_8.png",
+      "filename": "image_logo_8.png",
+      "dimensions": "130x150",
+      "file_size": 2150
+    },
+    {
+      "name": "Image Logo (mla+ logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FMLAPlus.png&w=3840&q=75",
+      "local_file": "logos/image_logo_9.png",
+      "filename": "image_logo_9.png",
+      "dimensions": "130x150",
+      "file_size": 1262
+    },
+    {
+      "name": "Image Logo (next generation schools logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FNext%2520Generation%2520Schools.png&w=3840&q=75",
+      "local_file": "logos/image_logo_10.png",
+      "filename": "image_logo_10.png",
+      "dimensions": "130x150",
+      "file_size": 1462
+    },
+    {
+      "name": "Image Logo (oppo logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FOPPO.png&w=3840&q=75",
+      "local_file": "logos/image_logo_11.png",
+      "filename": "image_logo_11.png",
+      "dimensions": "130x150",
+      "file_size": 2734
+    },
+    {
+      "name": "Image Logo (tamara logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FTamara.png&w=3840&q=75",
+      "local_file": "logos/image_logo_12.png",
+      "filename": "image_logo_12.png",
+      "dimensions": "130x150",
+      "file_size": 1434
+    },
+    {
+      "name": "Image Logo (warner bros. logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FThe%2520Warner%2520Bros.%2520Logo13.png&w=3840&q=75",
+      "local_file": "logos/image_logo_13.png",
+      "filename": "image_logo_13.png",
+      "dimensions": "130x150",
+      "file_size": 4948
+    },
+    {
+      "name": "Image Logo (uba logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FUBA.png&w=3840&q=75",
+      "local_file": "logos/image_logo_14.png",
+      "filename": "image_logo_14.png",
+      "dimensions": "130x150",
+      "file_size": 5620
+    },
+    {
+      "name": "Image Logo (unique vision logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FUnique%2520Vision.png&w=3840&q=75",
+      "local_file": "logos/image_logo_15.png",
+      "filename": "image_logo_15.png",
+      "dimensions": "130x150",
+      "file_size": 1526
+    },
+    {
+      "name": "Image Logo (webook logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FWebook.png&w=3840&q=75",
+      "local_file": "logos/image_logo_16.png",
+      "filename": "image_logo_16.png",
+      "dimensions": "130x150",
+      "file_size": 3896
+    },
+    {
+      "name": "Image Logo (uxbert labs logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2Fuxbert.png&w=3840&q=75",
+      "local_file": "logos/image_logo_35.png",
+      "filename": "image_logo_35.png",
+      "dimensions": "130x150",
+      "file_size": 5292
+    },
+    {
+      "name": "Image Logo (teqanah logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2Fteqanah.png&w=3840&q=75",
+      "local_file": "logos/image_logo_36.png",
+      "filename": "image_logo_36.png",
+      "dimensions": "130x150",
+      "file_size": 9044
+    },
+    {
+      "name": "Image Logo (promolinks international logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2Fpromolinks2.png&w=3840&q=75",
+      "local_file": "logos/image_logo_37.png",
+      "filename": "image_logo_37.png",
+      "dimensions": "130x150",
+      "file_size": 13262
+    },
+    {
+      "name": "Image Logo (physux logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2Fphysux.png&w=3840&q=75",
+      "local_file": "logos/image_logo_38.png",
+      "filename": "image_logo_38.png",
+      "dimensions": "130x150",
+      "file_size": 9314
+    },
+    {
+      "name": "Image Logo (react logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FTech%252F2-react.png&w=3840&q=75",
+      "local_file": "logos/image_logo_59.png",
+      "filename": "image_logo_59.png",
+      "dimensions": "130x150",
+      "file_size": 12178
+    },
+    {
+      "name": "Image Logo (next.js logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FTech%252F3-next.png&w=3840&q=75",
+      "local_file": "logos/image_logo_60.png",
+      "filename": "image_logo_60.png",
+      "dimensions": "130x150",
+      "file_size": 3536
+    },
+    {
+      "name": "Image Logo (angular logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FTech%252F8-angular.png&w=3840&q=75",
+      "local_file": "logos/image_logo_61.png",
+      "filename": "image_logo_61.png",
+      "dimensions": "130x150",
+      "file_size": 5786
+    },
+    {
+      "name": "Image Logo (react native logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FTech%252F4-react-native.png&w=3840&q=75",
+      "local_file": "logos/image_logo_62.png",
+      "filename": "image_logo_62.png",
+      "dimensions": "130x150",
+      "file_size": 9324
+    },
+    {
+      "name": "Image Logo (flutter logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FTech%252F5-flutter.png&w=3840&q=75",
+      "local_file": "logos/image_logo_63.png",
+      "filename": "image_logo_63.png",
+      "dimensions": "130x150",
+      "file_size": 3640
+    },
+    {
+      "name": "Image Logo (node.js logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FTech%252F6-node.png&w=3840&q=75",
+      "local_file": "logos/image_logo_64.png",
+      "filename": "image_logo_64.png",
+      "dimensions": "130x150",
+      "file_size": 6110
+    },
+    {
+      "name": "Image Logo (laravel logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FTech%252F1-laravel.png&w=3840&q=75",
+      "local_file": "logos/image_logo_65.png",
+      "filename": "image_logo_65.png",
+      "dimensions": "130x150",
+      "file_size": 7314
+    },
+    {
+      "name": "Image Logo (wordpress logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FTech%252F7-wp.png&w=3840&q=75",
+      "local_file": "logos/image_logo_66.png",
+      "filename": "image_logo_66.png",
+      "dimensions": "130x150",
+      "file_size": 11506
+    },
+    {
+      "name": "Image Logo (aws logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FTech%252F11-aws.png&w=3840&q=75",
+      "local_file": "logos/image_logo_67.png",
+      "filename": "image_logo_67.png",
+      "dimensions": "130x150",
+      "file_size": 12758
+    },
+    {
+      "name": "Image Logo (google cloud logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FTech%252F12-gcp.png&w=3840&q=75",
+      "local_file": "logos/image_logo_68.png",
+      "filename": "image_logo_68.png",
+      "dimensions": "130x150",
+      "file_size": 25092
+    },
+    {
+      "name": "Image Logo (azure logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/_next/image?url=%2Fassets%2Flogos%2FTech%252F13-azure.png&w=3840&q=75",
+      "local_file": "logos/image_logo_69.png",
+      "filename": "image_logo_69.png",
+      "dimensions": "130x150",
+      "file_size": 12308
+    },
+    {
+      "name": "Image Logo (postgresql logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/assets/logos/Tech%2F15-postgresql.svg",
+      "local_file": "logos/image_logo_70.svg",
+      "filename": "image_logo_70.svg",
+      "dimensions": "autoxauto",
+      "file_size": 5220
+    },
+    {
+      "name": "Image Logo (openai logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/assets/logos/Tech%2F27-openai.svg",
+      "local_file": "logos/image_logo_71.svg",
+      "filename": "image_logo_71.svg",
+      "dimensions": "autoxauto",
+      "file_size": 1570
+    },
+    {
+      "name": "Image Logo (anthropic logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/assets/logos/Tech%2F28-anthropic.svg",
+      "local_file": "logos/image_logo_72.svg",
+      "filename": "image_logo_72.svg",
+      "dimensions": "autoxauto",
+      "file_size": 296
+    },
+    {
+      "name": "Image Logo (tailwind css logo)",
+      "type": "Image Logo",
+      "source_url": "https://creiden.com/assets/logos/Tech%2F18-tailwind.svg",
+      "local_file": "logos/image_logo_73.svg",
+      "filename": "image_logo_73.svg",
+      "dimensions": "autoxauto",
+      "file_size": 617
+    }
+  ]
+}

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXTECH Preloader Showcase</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: #060B14;
+      color: #E2E8F0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    /* =========================================================
+       NEXTECH ULTIMATE PRELOADER
+       ========================================================= */
+    #nextech-preloader {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #060A12;
+      overflow: hidden;
+      user-select: none;
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.6s ease,
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.6s ease;
+      will-change: opacity, transform, filter;
+    }
+
+    #nextech-preloader.nextech-loaded {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transform: scale(1.04);
+      filter: blur(8px);
+    }
+
+    /* Ambient Cosmic Grid & Glow */
+    .nextech-preloader__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(0, 163, 255, 0.16) 0%, rgba(0, 83, 159, 0.08) 35%, transparent 70%),
+        radial-gradient(circle at 50% 50%, #0B1528 0%, #060A12 100%);
+      z-index: 1;
+    }
+
+    .nextech-preloader__grid {
+      position: absolute;
+      inset: -50%;
+      background-image: 
+        linear-gradient(rgba(0, 163, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 163, 255, 0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      transform: perspective(500px) rotateX(60deg) translateY(-20%);
+      opacity: 0.6;
+      animation: nextechGridMove 20s linear infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @keyframes nextechGridMove {
+      0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+      100% { transform: perspective(500px) rotateX(60deg) translateY(40px); }
+    }
+
+    /* Central Brand Stage */
+    .nextech-preloader__stage {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Orbital Rings around Logo */
+    .nextech-preloader__halo {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .nextech-ring {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .nextech-ring--outer {
+      animation: nextechRotateCW 14s linear infinite;
+    }
+
+    .nextech-ring--inner {
+      inset: 12px;
+      width: calc(100% - 24px);
+      height: calc(100% - 24px);
+      animation: nextechRotateCCW 9s linear infinite;
+    }
+
+    @keyframes nextechRotateCW {
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes nextechRotateCCW {
+      100% { transform: rotate(-360deg); }
+    }
+
+    /* Floating Center Emblem */
+    .nextech-preloader__emblem-card {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, rgba(13, 26, 48, 0.95) 0%, rgba(6, 11, 20, 0.98) 100%);
+      border: 1px solid rgba(0, 163, 255, 0.35);
+      box-shadow: 0 0 35px rgba(0, 163, 255, 0.3),
+                  inset 0 0 20px rgba(0, 163, 255, 0.15);
+      animation: nextechEmblemPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes nextechEmblemPulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(0, 163, 255, 0.3), inset 0 0 15px rgba(0, 163, 255, 0.15);
+        border-color: rgba(0, 163, 255, 0.35);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 55px rgba(0, 163, 255, 0.6), inset 0 0 30px rgba(0, 163, 255, 0.3);
+        border-color: rgba(56, 189, 248, 0.7);
+      }
+    }
+
+    .nextech-preloader__emblem-img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 14px rgba(0, 163, 255, 0.7));
+    }
+
+    /* Brand Typography */
+    .nextech-preloader__identity {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 28px;
+    }
+
+    .nextech-preloader__title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 0.28em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      text-shadow: 0 0 24px rgba(0, 163, 255, 0.6);
+      background: linear-gradient(135deg, #FFFFFF 30%, #93C5FD 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nextech-preloader__subtitle {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      color: #38BDF8;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    /* Cybernetic Progress Tracker */
+    .nextech-preloader__progress-wrap {
+      width: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .nextech-preloader__bar-rail {
+      position: relative;
+      width: 100%;
+      height: 4px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nextech-preloader__bar-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #00539F 0%, #00A3FF 60%, #38BDF8 100%);
+      box-shadow: 0 0 16px #00A3FF;
+      transition: width 0.15s cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    .nextech-preloader__details {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: #64748B;
+    }
+
+    .nextech-preloader__label {
+      letter-spacing: 0.06em;
+      color: #94A3B8;
+    }
+
+    .nextech-preloader__pct {
+      color: #38BDF8;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* Page Demo Content */
+    .content-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 48px;
+      max-width: 640px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7);
+    }
+
+    .content-card h1 {
+      font-size: 2.4rem;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #FFF 40%, #00A3FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .content-card p {
+      color: #94A3B8;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .btn-replay {
+      background: linear-gradient(135deg, #00539F 0%, #00A3FF 100%);
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px -5px rgba(0, 163, 255, 0.4);
+      transition: all 0.25s ease;
+    }
+
+    .btn-replay:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px -5px rgba(0, 163, 255, 0.6);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== NEXTECH BRAND PRELOADER ==================== -->
+  <div id="nextech-preloader" aria-hidden="true">
+    <div class="nextech-preloader__bg"></div>
+    <div class="nextech-preloader__grid"></div>
+
+    <div class="nextech-preloader__stage">
+      <!-- Orbital Glowing Halo -->
+      <div class="nextech-preloader__halo">
+        <svg class="nextech-ring nextech-ring--outer" viewBox="0 0 260 260" fill="none">
+          <circle cx="130" cy="130" r="124" stroke="url(#ringGradOuter)" stroke-width="2" stroke-linecap="round" stroke-dasharray="24 16" opacity="0.75"></circle>
+          <defs>
+            <linearGradient id="ringGradOuter" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00A3FF" />
+              <stop offset="50%" stop-color="#00539F" />
+              <stop offset="100%" stop-color="#38BDF8" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <svg class="nextech-ring nextech-ring--inner" viewBox="0 0 220 220" fill="none">
+          <circle cx="110" cy="110" r="105" stroke="url(#ringGradInner)" stroke-width="1.5" stroke-dasharray="8 10" opacity="0.5"></circle>
+          <defs>
+            <linearGradient id="ringGradInner" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#38BDF8" />
+              <stop offset="100%" stop-color="#00539F" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <!-- Brand Emblem in Center -->
+        <div class="nextech-preloader__emblem-card">
+          <img src="./assets/nextech-emblem-centered.png" alt="NEXTECH Emblem" class="nextech-preloader__emblem-img" />
+        </div>
+      </div>
+
+      <!-- Brand Typography -->
+      <div class="nextech-preloader__identity">
+        <div class="nextech-preloader__title">NEXTECH</div>
+        <div class="nextech-preloader__subtitle">TECHNOLOGY &amp; DIGITAL SOLUTIONS</div>
+      </div>
+
+      <!-- Cybernetic Progress Bar -->
+      <div class="nextech-preloader__progress-wrap">
+        <div class="nextech-preloader__bar-rail">
+          <div class="nextech-preloader__bar-fill" id="nextechProgressFill"></div>
+        </div>
+        <div class="nextech-preloader__details">
+          <span class="nextech-preloader__label" id="nextechStatusText">INITIALIZING SYSTEM...</span>
+          <span class="nextech-preloader__pct" id="nextechProgressCount">0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Content Demo -->
+  <div class="content-card">
+    <h1>NEXTECH Experience</h1>
+    <p>Your custom preloader has been engineered using the official logo from your file. Smooth entry, progress tracking, and seamless transition.</p>
+    <button class="btn-replay" onclick="replayPreloader()">Replay Preloader</button>
+  </div>
+
+  <script>
+    function runPreloader() {
+      const preloader = document.getElementById('nextech-preloader');
+      const fill = document.getElementById('nextechProgressFill');
+      const count = document.getElementById('nextechProgressCount');
+      const status = document.getElementById('nextechStatusText');
+
+      if (!preloader) return;
+
+      let progress = 0;
+      let isDone = false;
+
+      const statuses = [
+        "INITIALIZING CORE...",
+        "SYNCHRONIZING MODULES...",
+        "CONNECTING SERVICES...",
+        "RENDERING INTERFACE...",
+        "EXPERIENCE READY"
+      ];
+
+      const interval = setInterval(() => {
+        if (!isDone) {
+          progress += Math.floor(Math.random() * 7) + 3;
+          if (progress > 88) progress = 88;
+        } else {
+          progress += 12;
+        }
+
+        if (progress > 100) progress = 100;
+
+        if (fill) fill.style.width = progress + '%';
+        if (count) count.textContent = progress + '%';
+
+        const step = Math.min(Math.floor((progress / 100) * statuses.length), statuses.length - 1);
+        if (status) status.textContent = statuses[step];
+
+        if (progress >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            preloader.classList.add('nextech-loaded');
+            setTimeout(() => {
+              preloader.style.display = 'none';
+            }, 650);
+          }, 180);
+        }
+      }, 45);
+
+      window.addEventListener('load', () => {
+        isDone = true;
+      });
+
+      // Max safety timeout
+      setTimeout(() => {
+        isDone = true;
+      }, 1400);
+    }
+
+    runPreloader();
+
+    function replayPreloader() {
+      const preloader = document.getElementById('nextech-preloader');
+      if (preloader) {
+        preloader.style.display = 'flex';
+        preloader.classList.remove('nextech-loaded');
+        const fill = document.getElementById('nextechProgressFill');
+        const count = document.getElementById('nextechProgressCount');
+        const status = document.getElementById('nextechStatusText');
+        if (fill) fill.style.width = '0%';
+        if (count) count.textContent = '0%';
+        if (status) status.textContent = 'INITIALIZING SYSTEM...';
+        runPreloader();
+      }
+    }
+  </script>
+</body>
+</html>

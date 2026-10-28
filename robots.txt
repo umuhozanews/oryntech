@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Private, dev tools, and API assets
+Disallow: /api/
+Disallow: /pages_index.html
+Disallow: /logos/
+Disallow: /_next/
+
+# Production sitemap
+Sitemap: https://www.oryntechltd.com/sitemap.xml
