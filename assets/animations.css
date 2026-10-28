@@ -1,798 +1,354 @@
-@keyframes megaFadeIn { 
-  0% { opacity: 0; transform: translateX(-50%)translateY(var(--space-2)); }
-  100% { opacity: 1; transform: translate(-50%) translateY(0px); }
-}
-
-@keyframes loader-pulse { 
-  0%, 100% { opacity: 0.9; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.12); }
-}
-
-@keyframes loader-bar { 
-  100% { width: 100%; }
-}
-
-@keyframes partner-scroll-fwd { 
-  0% { transform: translate(0px); }
-  100% { transform: translate(-50%); }
-}
-
-@keyframes partner-scroll-rev { 
-  0% { transform: translate(-50%); }
-  100% { transform: translate(0px); }
-}
-
-@keyframes insights-card-enter { 
-  0% { opacity: 0; transform: translate(-28px); }
-  100% { opacity: 1; transform: translate(0px); }
-}
-
-@keyframes spin { 
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes pulse { 
-  50% { opacity: 0.5; }
-}
-
-@keyframes bounce { 
-  0%, 100% { animation-timing-function: cubic-bezier(0.8, 0, 1, 1); transform: translateY(-25%); }
-  50% { animation-timing-function: cubic-bezier(0, 0, 0.2, 1); transform: none; }
-}
-
-@keyframes cr-cookie-in { 
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0px); }
-}
-
-@keyframes cr-cookie-fab-in { 
-  0% { opacity: 0; transform: translateY(12px); }
-  100% { opacity: 1; transform: translateY(0px); }
-}
-
-@keyframes WhyCreiden-module__sEQ2vG__whyCreiden-pin-pulse { 
-  0%, 100% { opacity: 0.7; transform: scale(1); }
-  50% { opacity: 0; transform: scale(2.4); }
-}
-
-@keyframes WhyCreiden-module__sEQ2vG__whyCreiden-hq-pulse { 
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 0; transform: scale(2.8); }
-}
-
-@keyframes WhyCreiden-module__sEQ2vG__whyCreiden-dash-drift { 
-  100% { stroke-dashoffset: -60px; }
-}
-
-@keyframes WhyCreiden-module__sEQ2vG__whyCreiden-panel-in { 
-  0% { opacity: 0; transform: translateY(6px); }
-  100% { opacity: 1; transform: translateY(0px); }
-}
-
-/* Legacy Loader Cleanup & Reveal Enforcer */
-html[data-app-loading], html[data-loading] {
-    overflow: visible !important;
-}
-.app-loader-shell, #app-initial-loader, .cr-legacy-loader {
-    display: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-    z-index: -99999 !important;
-}
-.reveal, .reveal.in, [class*="reveal"] {
-    opacity: 1 !important;
-    transform: none !important;
-    translate: none !important;
-    visibility: visible !important;
-}
-
-/* =========================================================
-   NEXTECH OFFICIAL BRAND PRELOADER
-   ========================================================= */
-#nextech-preloader {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 99999999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #060A12;
-  overflow: hidden;
-  user-select: none;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              visibility 0.6s ease,
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.6s ease;
-  will-change: opacity, transform, filter;
-}
-
-#nextech-preloader.nextech-loaded {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  transform: scale(1.04);
-  filter: blur(8px);
-}
-
-.nextech-preloader__bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 45%, rgba(0, 163, 255, 0.16) 0%, rgba(0, 83, 159, 0.08) 35%, transparent 70%),
-    radial-gradient(circle at 50% 50%, #0B1528 0%, #060A12 100%);
-  z-index: 1;
-}
-
-.nextech-preloader__grid {
-  position: absolute;
-  inset: -50%;
-  background-image: 
-    linear-gradient(rgba(0, 163, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 163, 255, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
-  transform: perspective(500px) rotateX(60deg) translateY(-20%);
-  opacity: 0.6;
-  animation: nextechGridMove 20s linear infinite;
-  z-index: 1;
-  pointer-events: none;
-}
-
-@keyframes nextechGridMove {
-  0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
-  100% { transform: perspective(500px) rotateX(60deg) translateY(40px); }
-}
-
-.nextech-preloader__stage {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.nextech-preloader__halo {
-  position: relative;
-  width: 220px;
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 24px;
-}
-
-.nextech-ring {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.nextech-ring--outer {
-  animation: nextechRotateCW 14s linear infinite;
-}
-
-.nextech-ring--inner {
-  inset: 12px;
-  width: calc(100% - 24px);
-  height: calc(100% - 24px);
-  animation: nextechRotateCCW 9s linear infinite;
-}
-
-@keyframes nextechRotateCW {
-  100% { transform: rotate(360deg); }
-}
-@keyframes nextechRotateCCW {
-  100% { transform: rotate(-360deg); }
-}
-
-.nextech-preloader__emblem-card {
-  position: relative;
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle, rgba(13, 26, 48, 0.95) 0%, rgba(6, 11, 20, 0.98) 100%);
-  border: 1px solid rgba(0, 163, 255, 0.35);
-  box-shadow: 0 0 35px rgba(0, 163, 255, 0.3),
-              inset 0 0 20px rgba(0, 163, 255, 0.15);
-  animation: nextechEmblemPulse 3s ease-in-out infinite;
-}
-
-@keyframes nextechEmblemPulse {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 30px rgba(0, 163, 255, 0.3), inset 0 0 15px rgba(0, 163, 255, 0.15);
-    border-color: rgba(0, 163, 255, 0.35);
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 55px rgba(0, 163, 255, 0.6), inset 0 0 30px rgba(0, 163, 255, 0.3);
-    border-color: rgba(56, 189, 248, 0.7);
-  }
-}
-
-.nextech-preloader__emblem-img {
-  width: 90px;
-  height: 90px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 14px rgba(0, 163, 255, 0.7));
-}
-
-.nextech-preloader__identity {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  margin-bottom: 28px;
-}
-
-.nextech-preloader__title {
-  font-size: 26px;
-  font-weight: 800;
-  letter-spacing: 0.28em;
-  color: #FFFFFF;
-  text-transform: uppercase;
-  text-shadow: 0 0 24px rgba(0, 163, 255, 0.6);
-  background: linear-gradient(135deg, #FFFFFF 30%, #93C5FD 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.nextech-preloader__subtitle {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.35em;
-  color: #38BDF8;
-  text-transform: uppercase;
-  opacity: 0.9;
-}
-
-.nextech-preloader__progress-wrap {
-  width: 260px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.nextech-preloader__bar-rail {
-  position: relative;
-  width: 100%;
-  height: 4px;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.nextech-preloader__bar-fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0%;
-  border-radius: 9999px;
-  background: linear-gradient(90deg, #00539F 0%, #00A3FF 60%, #38BDF8 100%);
-  box-shadow: 0 0 16px #00A3FF;
-  transition: width 0.15s cubic-bezier(0.2, 0, 0, 1);
-}
-
-.nextech-preloader__details {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 11px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  color: #64748B;
-}
-
-.nextech-preloader__label {
-  letter-spacing: 0.06em;
-  color: #94A3B8;
-}
-
-.nextech-preloader__pct {
-  color: #38BDF8;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-}
-
-
-/* Legacy Loader Cleanup & Reveal Enforcer */
-html[data-app-loading], html[data-loading] {
-    overflow: visible !important;
-}
-.app-loader-shell, #app-initial-loader, .cr-legacy-loader {
-    display: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-    z-index: -99999 !important;
-}
-.reveal, .reveal.in, [class*="reveal"] {
-    opacity: 1 !important;
-    transform: none !important;
-    translate: none !important;
-    visibility: visible !important;
-}
-
-/* =========================================================
-   NEXTECH OFFICIAL BRAND PRELOADER
-   ========================================================= */
-#nextech-preloader {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 99999999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #060A12;
-  overflow: hidden;
-  user-select: none;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              visibility 0.6s ease,
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.6s ease;
-  will-change: opacity, transform, filter;
-}
-
-#nextech-preloader.nextech-loaded {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  transform: scale(1.04);
-  filter: blur(8px);
-}
-
-.nextech-preloader__bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 45%, rgba(0, 163, 255, 0.16) 0%, rgba(0, 83, 159, 0.08) 35%, transparent 70%),
-    radial-gradient(circle at 50% 50%, #0B1528 0%, #060A12 100%);
-  z-index: 1;
-}
-
-.nextech-preloader__grid {
-  position: absolute;
-  inset: -50%;
-  background-image: 
-    linear-gradient(rgba(0, 163, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 163, 255, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
-  transform: perspective(500px) rotateX(60deg) translateY(-20%);
-  opacity: 0.6;
-  animation: nextechGridMove 20s linear infinite;
-  z-index: 1;
-  pointer-events: none;
-}
-
-@keyframes nextechGridMove {
-  0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
-  100% { transform: perspective(500px) rotateX(60deg) translateY(40px); }
-}
-
-.nextech-preloader__stage {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.nextech-preloader__halo {
-  position: relative;
-  width: 220px;
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 24px;
-}
-
-.nextech-ring {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.nextech-ring--outer {
-  animation: nextechRotateCW 14s linear infinite;
-}
-
-.nextech-ring--inner {
-  inset: 12px;
-  width: calc(100% - 24px);
-  height: calc(100% - 24px);
-  animation: nextechRotateCCW 9s linear infinite;
-}
-
-@keyframes nextechRotateCW {
-  100% { transform: rotate(360deg); }
-}
-@keyframes nextechRotateCCW {
-  100% { transform: rotate(-360deg); }
-}
-
-.nextech-preloader__emblem-card {
-  position: relative;
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle, rgba(13, 26, 48, 0.95) 0%, rgba(6, 11, 20, 0.98) 100%);
-  border: 1px solid rgba(0, 163, 255, 0.35);
-  box-shadow: 0 0 35px rgba(0, 163, 255, 0.3),
-              inset 0 0 20px rgba(0, 163, 255, 0.15);
-  animation: nextechEmblemPulse 3s ease-in-out infinite;
-}
-
-@keyframes nextechEmblemPulse {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 30px rgba(0, 163, 255, 0.3), inset 0 0 15px rgba(0, 163, 255, 0.15);
-    border-color: rgba(0, 163, 255, 0.35);
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 55px rgba(0, 163, 255, 0.6), inset 0 0 30px rgba(0, 163, 255, 0.3);
-    border-color: rgba(56, 189, 248, 0.7);
-  }
-}
-
-.nextech-preloader__emblem-img {
-  width: 90px;
-  height: 90px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 14px rgba(0, 163, 255, 0.7));
-}
-
-.nextech-preloader__identity {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  margin-bottom: 28px;
-}
-
-.nextech-preloader__title {
-  font-size: 26px;
-  font-weight: 800;
-  letter-spacing: 0.28em;
-  color: #FFFFFF;
-  text-transform: uppercase;
-  text-shadow: 0 0 24px rgba(0, 163, 255, 0.6);
-  background: linear-gradient(135deg, #FFFFFF 30%, #93C5FD 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.nextech-preloader__subtitle {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.35em;
-  color: #38BDF8;
-  text-transform: uppercase;
-  opacity: 0.9;
-}
-
-.nextech-preloader__progress-wrap {
-  width: 260px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.nextech-preloader__bar-rail {
-  position: relative;
-  width: 100%;
-  height: 4px;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.nextech-preloader__bar-fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0%;
-  border-radius: 9999px;
-  background: linear-gradient(90deg, #00539F 0%, #00A3FF 60%, #38BDF8 100%);
-  box-shadow: 0 0 16px #00A3FF;
-  transition: width 0.15s cubic-bezier(0.2, 0, 0, 1);
-}
-
-.nextech-preloader__details {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 11px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  color: #64748B;
-}
-
-.nextech-preloader__label {
-  letter-spacing: 0.06em;
-  color: #94A3B8;
-}
-
-.nextech-preloader__pct {
-  color: #38BDF8;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-}
-
-
 /* =====================================================================
-   Universal Dropdown Menu on Hover
+   Creiden Design System & Interaction Enhancements (100% Authentic)
    ===================================================================== */
-.site-nav__links li.relative { position: relative !important; }
-.services-dropdown-menu {
-  display: none; position: absolute; top: calc(100% + 4px); left: 50%;
-  transform: translateX(-50%) translateY(6px); width: 580px;
-  background: #ffffff !important; border: 1px solid #e2e8f0 !important;
-  border-radius: 18px !important; box-shadow: 0 20px 48px -8px rgba(0,83,159,0.16), 0 4px 16px rgba(0,0,0,0.06) !important;
-  padding: 16px !important; z-index: 9999999 !important; opacity: 0; visibility: hidden; pointer-events: none;
-  transition: opacity 0.2s cubic-bezier(0.2,0,0,1), transform 0.2s cubic-bezier(0.2,0,0,1), visibility 0.2s;
-}
-.services-dropdown-menu::before {
-  content: ""; position: absolute; top: -16px; left: 0; right: 0; height: 16px; background: transparent;
-}
-.site-nav__links li.relative:hover .services-dropdown-menu,
-.services-dropdown-menu:hover,
-.site-nav__links li.relative.dropdown-open .services-dropdown-menu {
-  display: block !important; opacity: 1 !important; visibility: visible !important; pointer-events: auto !important;
-  transform: translateX(-50%) translateY(0) !important;
-}
-.site-nav__links li.relative:hover .mega-chevron,
-.site-nav__links li.relative.dropdown-open .mega-chevron {
-  transform: rotate(180deg) !important;
-}
-.site-nav__links li.relative:hover .site-nav__link--has-mega {
-  color: var(--creiden-blue, #00539f) !important;
-}
-.dropdown-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-.dropdown-item {
-  display: flex !important; align-items: flex-start !important; gap: 12px !important;
-  padding: 10px 12px !important; border-radius: 12px !important; text-decoration: none !important;
-  transition: background 0.18s ease, transform 0.18s ease !important;
-}
-.dropdown-item:hover { background: #f8fafc !important; transform: translateX(3px) !important; }
-.dropdown-icon {
-  display: grid !important; place-items: center !important; width: 38px !important; height: 38px !important;
-  border-radius: 10px !important; flex-shrink: 0 !important;
-}
-.bg-creiden-blue\/10 { background: rgba(0, 83, 159, 0.1) !important; color: #00539f !important; }
-.bg-creiden-cyan\/10 { background: rgba(0, 192, 243, 0.1) !important; color: #008eb4 !important; }
-.bg-creiden-magenta\/10 { background: rgba(189, 26, 141, 0.1) !important; color: #bd1a8d !important; }
-.bg-creiden-teal\/10 { background: rgba(0, 116, 132, 0.1) !important; color: #007484 !important; }
-.bg-creiden-orange\/10 { background: rgba(254, 102, 37, 0.1) !important; color: #fe6625 !important; }
-.bg-creiden-green\/10 { background: rgba(0, 178, 125, 0.1) !important; color: #008f64 !important; }
-.dropdown-text { display: flex !important; flex-direction: column !important; text-align: left !important; }
-.dropdown-title { font-size: 14px !important; font-weight: 600 !important; color: #1e293b !important; line-height: 1.3 !important; }
-.dropdown-item:hover .dropdown-title { color: #00539f !important; }
-.dropdown-desc { font-size: 11.5px !important; color: #64748b !important; line-height: 1.4 !important; margin-top: 2px !important; }
-.dropdown-footer {
-  display: flex !important; align-items: center !important; justify-content: space-between !important;
-  margin-top: 10px !important; padding-top: 10px !important; border-top: 1px solid #f1f5f9 !important;
-}
-.dropdown-all-btn {
-  display: inline-flex !important; align-items: center !important; gap: 6px !important; font-size: 12.5px !important;
-  font-weight: 600 !important; color: #00539f !important; text-decoration: none !important; padding: 4px 8px !important;
-  border-radius: 6px !important; transition: background 0.15s !important;
-}
-.dropdown-all-btn:hover { background: #f1f5f9 !important; }
-.dropdown-badge-link {
-  display: inline-flex !important; align-items: center !important; gap: 6px !important; font-size: 12px !important;
-  font-weight: 500 !important; color: #475569 !important; text-decoration: none !important; background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important; padding: 4px 10px !important; border-radius: 20px !important;
-}
-.badge-dot { width: 6px !important; height: 6px !important; border-radius: 50% !important; background: #10b981 !important; }
 
-
-/* OrynTech Products Dropdown & Non-Interactive Product Cards */
-.products-dropdown-menu {
-  display: none !important;
-  position: absolute !important;
-  top: 100% !important;
-  left: 50% !important;
-  transform: translateX(-50%) translateY(10px) !important;
-  width: 440px !important;
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 14px !important;
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0,0,0,0.1) !important;
-  padding: 12px !important;
-  z-index: 1000 !important;
-  transition: opacity 0.2s ease, transform 0.2s ease !important;
-}
-.site-nav__links li.relative:hover .products-dropdown-menu,
-.site-nav__links li.relative:focus-within .products-dropdown-menu {
-  display: block !important;
-  transform: translateX(-50%) translateY(0) !important;
-}
-.product-menu-item {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-  padding: 10px 12px !important;
-  border-radius: 8px !important;
-  background: transparent !important;
-  border-bottom: 1px solid #f8fafc !important;
-  cursor: default !important;
-  user-select: none !important;
-}
-.product-menu-item:last-child {
-  border-bottom: none !important;
-}
-.product-menu-item:hover {
-  background: #f8fafc !important;
-}
-.product-menu-icon {
-  width: 36px !important;
-  height: 36px !important;
-  border-radius: 8px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  flex-shrink: 0 !important;
-}
-.product-menu-badge {
-  font-size: 10.5px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.04em !important;
-  text-transform: uppercase !important;
-  padding: 2px 8px !important;
-  border-radius: 12px !important;
-  margin-left: auto !important;
-  background: #f1f5f9 !important;
-  color: #475569 !important;
-}
-.product-card-static {
-  position: relative;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-.product-card-static:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 35px -10px rgba(0, 83, 159, 0.08);
-}
-.product-status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 6px 14px;
-  border-radius: 9999px;
-  background: #f1f5f9;
-  color: #334155;
-  border: 1px solid #e2e8f0;
-  cursor: default;
-  pointer-events: none;
-}
-.product-status-pill .dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #0284c7;
-}
-
-
-/* =========================================================
-   FAQ / Q&A Accordion Styling
-   ========================================================= */
-.faq-accordion-item {
-  border-bottom: 1px solid #e2e8f0;
-  transition: all 0.25s ease;
-}
-.faq-accordion-item:last-child {
-  border-bottom: none;
-}
-.faq-accordion-btn {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 22px 0;
-  background: transparent;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  font-family: inherit;
-  outline: none;
-}
-.faq-accordion-btn:hover .faq-question-text {
-  color: #00539F;
-}
-.faq-question-text {
-  font-size: 18px;
-  font-weight: 700;
-  color: #0A192F;
-  line-height: 1.35;
-  transition: color 0.2s ease;
-}
-.faq-chevron {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #f1f5f9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
-  color: #64748b;
-}
-.faq-accordion-item.open .faq-chevron {
-  transform: rotate(180deg);
-  background: #00539F;
-  color: #ffffff;
-}
-.faq-answer-panel {
-  display: none;
-  padding-bottom: 24px;
-  font-size: 15.5px;
-  line-height: 1.7;
-  color: #475569;
-}
-.faq-accordion-item.open .faq-answer-panel {
-  display: block;
-  animation: faqFadeIn 0.25s ease forwards;
-}
-@keyframes faqFadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
+/* 1. Global Keyframes & Transitions */
+@keyframes megaFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* =====================================================================
-   Site Navigation - Moves with scroll away from screen, never overlays
-   ===================================================================== */
-.site-nav {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  box-shadow: none !important;
-}
-.site-nav.site-nav--menu-open {
-  position: fixed !important;
-}
-
-/* =====================================================================
-   Horizontal Logo Marquee (Original creiden.com style)
-   ===================================================================== */
-@keyframes nextech-marquee-scroll {
+@keyframes partner-scroll-fwd {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
+@keyframes partner-scroll-rev {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes cr-cookie-in {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* 2. Fixed Navbar & Glassmorphism (.scrolled) */
+.site-nav {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 100 !important;
+  padding: 22px 0 !important;
+  background: transparent !important;
+  transition: padding 0.32s cubic-bezier(0.4, 0, 0.2, 1), background 0.32s ease, box-shadow 0.32s ease, backdrop-filter 0.32s ease !important;
+}
+
+.site-nav.scrolled {
+  padding: 12px 0 !important;
+  -webkit-backdrop-filter: saturate(160%) blur(14px) !important;
+  backdrop-filter: saturate(160%) blur(14px) !important;
+  background: rgba(255, 255, 255, 0.88) !important;
+  box-shadow: 0 1px 0 rgba(0, 83, 159, 0.08), 0 8px 24px rgba(0, 83, 159, 0.06) !important;
+}
+
+.site-nav.site-nav--menu-open {
+  position: fixed !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+.site-nav__brand-mark {
+  transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1), color 0.32s ease !important;
+}
+
+.site-nav__brand:hover .site-nav__brand-mark {
+  transform: rotate(-8deg) scale(1.08) !important;
+}
+
+/* 3. Underline Yellow Accent on Hover for Nav Links */
+.site-nav__link {
+  position: relative;
+  transition: color 0.24s ease !important;
+}
+
+.site-nav__link:after {
+  content: "" !important;
+  position: absolute !important;
+  left: 12px !important;
+  right: 12px !important;
+  bottom: 2px !important;
+  height: 2px !important;
+  background: var(--creiden-yellow, #ffd200) !important;
+  transform: scaleX(0) !important;
+  transform-origin: 0% 50% !important;
+  transition: transform 0.28s cubic-bezier(0.2, 0, 0, 1) !important;
+}
+
+.site-nav__link:hover:after,
+.site-nav__link.is-active:after {
+  transform: scaleX(1) !important;
+}
+
+.site-nav__link:hover,
+.site-nav__link.is-active {
+  color: var(--creiden-blue, #00539f) !important;
+}
+
+/* 4. Scroll Reveals & Split-Word Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0, 0, 1), transform 0.7s cubic-bezier(0.2, 0, 0, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.in,
+.reveal.in-view,
+.reveal.is-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.reveal[data-delay="1"].in { transition-delay: 0.06s; }
+.reveal[data-delay="2"].in { transition-delay: 0.16s; }
+.reveal[data-delay="3"].in { transition-delay: 0.24s; }
+.reveal[data-delay="4"].in { transition-delay: 0.32s; }
+.reveal[data-delay="5"].in { transition-delay: 0.4s; }
+
+.split-word {
+  vertical-align: bottom;
+  margin-bottom: -0.08em;
+  padding-bottom: 0.12em;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.split-word > span {
+  will-change: transform;
+  transition: transform 0.9s cubic-bezier(0.2, 0, 0, 1);
+  display: inline-block;
+  transform: translateY(110%);
+}
+
+.split-word.in > span {
+  transform: translateY(0%) !important;
+}
+
+/* 5. Authentic Creiden Case-Card Styles */
+.case-card {
+  border: 1px solid var(--border-1, #e5e7eb) !important;
+  background: #ffffff !important;
+  border-radius: 28px !important;
+  display: grid !important;
+  position: relative !important;
+  overflow: hidden !important;
+  box-shadow: 0 2px 6px rgba(0, 83, 159, 0.05) !important;
+  transition: box-shadow 0.42s cubic-bezier(0.2, 0, 0, 1), transform 0.42s cubic-bezier(0.2, 0, 0, 1) !important;
+}
+
+.case-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 40px 80px rgba(0, 83, 159, 0.18) !important;
+}
+
+.case-card--normal {
+  grid-template-columns: 1.3fr 1fr !important;
+}
+
+.case-card--flip {
+  grid-template-columns: 1fr 1.3fr !important;
+}
+
+.case-card__preview {
+  grid-row: 1 !important;
+  min-height: 420px !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.case-card--normal .case-card__preview {
+  grid-column: 1 !important;
+}
+
+.case-card--flip .case-card__preview {
+  grid-column: 2 !important;
+}
+
+.case-card__body {
+  flex-direction: column !important;
+  grid-row: 1 !important;
+  justify-content: space-between !important;
+  gap: 28px !important;
+  min-width: 0 !important;
+  padding: 48px 44px !important;
+  display: flex !important;
+}
+
+.case-card--normal .case-card__body {
+  grid-column: 2 !important;
+}
+
+.case-card--flip .case-card__body {
+  grid-column: 1 !important;
+}
+
+.case-card__title-link:after {
+  content: "" !important;
+  z-index: 1 !important;
+  position: absolute !important;
+  inset: 0 !important;
+}
+
+.case-card__clutch {
+  z-index: 2 !important;
+  position: relative !important;
+}
+
+.case-card__link-arrow {
+  transition: transform 0.42s cubic-bezier(0.2, 0, 0, 1) !important;
+}
+
+.case-card:hover .case-card__link-arrow {
+  transform: rotate(-45deg) !important;
+}
+
+.case-card__link-text {
+  transition: transform 0.32s cubic-bezier(0.2, 0, 0, 1), color 0.24s !important;
+}
+
+.case-card:hover .case-card__link-text {
+  transform: translate(6px) !important;
+}
+
+@media (max-width: 900px) {
+  .case-card--normal,
+  .case-card--flip {
+    grid-template-columns: 1fr !important;
+  }
+  .case-card__preview,
+  .case-card__body {
+    grid-column: 1 !important;
+  }
+  .case-card__preview {
+    grid-row: 1 !important;
+    min-height: 300px !important;
+  }
+  .case-card__body {
+    grid-row: 2 !important;
+    padding: 32px 24px !important;
+  }
+}
+
+/* 6. AI Build Rescue Scanner Sweep Animation */
+.home-rescue__grid {
+  pointer-events: none;
+  background-image: radial-gradient(circle at 1.5px 1.5px, rgba(255,255,255,0.07) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  position: absolute;
+  inset: 0;
+}
+
+.home-rescue__sweep {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.home-rescue__sweep:before {
+  content: "";
+  background: linear-gradient(to right, transparent, color-mix(in srgb, var(--creiden-cyan, #00bfb2) 14%, transparent) 55%, color-mix(in srgb, var(--creiden-cyan, #00bfb2) 34%, transparent) 92%, transparent);
+  opacity: 0;
+  width: 26%;
+  position: absolute;
+  top: -60%;
+  bottom: -60%;
+  left: 0;
+  transform: translate(-140%) rotate(12deg);
+}
+
+.home-rescue__sweep.is-running:before {
+  animation: 2.6s linear 0.12s both home-rescue-sweep;
+}
+
+@keyframes home-rescue-sweep {
+  0% { opacity: 0; transform: translate(-140%) rotate(12deg); }
+  12%, 88% { opacity: 1; }
+  100% { opacity: 0; transform: translate(520%) rotate(12deg); }
+}
+
+/* 7. Continuous Horizontal Logo Marquee */
+@keyframes creiden-marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 .logo-marquee-module__tf3V_a__container.auto-scroll {
   display: flex !important;
   width: max-content !important;
+  animation: creiden-marquee-scroll 28s linear infinite !important;
   will-change: transform !important;
-  animation: nextech-marquee-scroll 32s linear infinite !important;
 }
+
 .logo-marquee-module__tf3V_a__container.auto-scroll:hover {
   animation-play-state: paused !important;
 }
+
 .logo-marquee-module__tf3V_a__logoItem a {
-  cursor: pointer !important;
+  opacity: 0.72;
+  filter: grayscale(100%);
+  transition: opacity 0.26s ease, filter 0.26s ease, transform 0.26s ease;
+}
+
+.logo-marquee-module__tf3V_a__logoItem a:hover {
+  opacity: 1 !important;
+  filter: grayscale(0%) !important;
+  transform: scale(1.06) !important;
+}
+
+/* 8. Mobile Drawer Menu Styles */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  background: rgba(27, 31, 36, 0.96);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 96px 28px 40px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.3s cubic-bezier(0.2, 0, 0, 1), transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.mobile-menu.is-open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
+}
+
+.mobile-menu__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mobile-menu__link {
+  color: #ffffff !important;
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease;
+}
+
+.mobile-menu__link:hover,
+.mobile-menu__link.is-active {
+  color: var(--creiden-yellow, #ffd200) !important;
+}
+
+/* 9. Ensure Purged Legacy Loaders */
+.app-loader-shell, #app-initial-loader, .cr-legacy-loader, #nextech-preloader {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
