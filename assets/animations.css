@@ -287,6 +287,29 @@
   animation-play-state: paused !important;
 }
 
+/* The scraped bundle styles the slide's width and margin but never makes it a
+   flex row, so the logos inside stacked vertically instead of scrolling. */
+.logo-marquee-module__tf3V_a__slide {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .logo-marquee-module__tf3V_a__slide { gap: 40px; }
+}
+
+@media (min-width: 1280px) {
+  .logo-marquee-module__tf3V_a__slide { gap: 72px; }
+}
+
+/* The bundle already dims the item (opacity .5 + grayscale); without this the
+   anchor's own dimming multiplied with it and the logos washed out. */
+.logo-marquee-module__tf3V_a__logoItem {
+  opacity: 1;
+  filter: none;
+}
+
 .logo-marquee-module__tf3V_a__logoItem a {
   opacity: 0.72;
   filter: grayscale(100%);
