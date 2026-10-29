@@ -3,3 +3,6 @@ __pycache__/
 .pagesignore
 .commitmsg
 scratch.py
+team.json.bak
+*_shot.png
+*_crop.png

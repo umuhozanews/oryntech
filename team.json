@@ -1,0 +1,9 @@
+{
+  "eyebrow": "OUR TEAM",
+  "heading": "The People Behind OrynTech",
+  "intro": "The engineers, designers and delivery leads who build and run the systems our clients depend on.",
+
+  "_shape": "Each member: name, title, bio, optional photo (path under /assets/oryntech/team/) and optional linkedin URL. Photos render as square images; members without a photo fall back to an initials avatar.",
+
+  "members": []
+}

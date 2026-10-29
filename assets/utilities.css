@@ -35,6 +35,7 @@
 
 /* --- default palette: background ------------------------------------- */
 .bg-gray-100 { background-color: #f3f4f6; }
+.bg-blue-50 { background-color: #eff6ff; }
 .bg-sky-50 { background-color: #f0f9ff; }
 .bg-sky-100 { background-color: #e0f2fe; }
 .bg-emerald-50 { background-color: #ecfdf5; }
@@ -74,6 +75,7 @@
 .pr-10 { padding-right: 2.5rem; }
 .ml-2\.5 { margin-left: 0.625rem; }
 .w-3\.5 { width: 0.875rem; }
+.h-16 { height: 4rem; }
 .max-w-xl { max-width: 36rem; }
 .max-w-3xl { max-width: 48rem; }
 .tracking-wider { --tw-tracking: 0.05em; letter-spacing: 0.05em; }
@@ -86,6 +88,9 @@
 .space-y-6 > :not(:last-child) { margin-bottom: 1.5rem; }
 .space-y-8 > :not(:last-child) { margin-bottom: 2rem; }
 .space-y-16 > :not(:last-child) { margin-bottom: 4rem; }
+
+/* --- fixed type ------------------------------------------------------- */
+[class~="text-[14.5px]"] { font-size: 14.5px; }
 
 /* --- fluid type ------------------------------------------------------- */
 [class~="text-[clamp(17px,2vw,20px)]"] { font-size: clamp(17px, 2vw, 20px); }
@@ -186,6 +191,7 @@
 .hover\:bg-gray-200:hover { background-color: #e5e7eb; }
 .hover\:bg-sky-500:hover { background-color: #0ea5e9; }
 .hover\:bg-sky-600:hover { background-color: #0284c7; }
+.hover\:border-gray-300:hover { border-color: #d1d5db; }
 .hover\:text-white:hover { color: #fff; }
 .hover\:text-sky-400:hover { color: #38bdf8; }
 .hover\:text-sky-700:hover { color: #0369a1; }
