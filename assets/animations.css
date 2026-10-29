@@ -352,3 +352,157 @@
   visibility: hidden !important;
   pointer-events: none !important;
 }
+
+/* =====================================================================
+   Universal Dropdown Menu on Hover
+   ===================================================================== */
+.site-nav__links li.relative { position: relative !important; }
+.services-dropdown-menu {
+  display: none; position: absolute; top: calc(100% + 4px); left: 50%;
+  transform: translateX(-50%) translateY(6px); width: 580px;
+  background: #ffffff !important; border: 1px solid #e2e8f0 !important;
+  border-radius: 18px !important; box-shadow: 0 20px 48px -8px rgba(0,83,159,0.16), 0 4px 16px rgba(0,0,0,0.06) !important;
+  padding: 16px !important; z-index: 9999999 !important; opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.2s cubic-bezier(0.2,0,0,1), transform 0.2s cubic-bezier(0.2,0,0,1), visibility 0.2s;
+}
+.services-dropdown-menu::before {
+  content: ""; position: absolute; top: -16px; left: 0; right: 0; height: 16px; background: transparent;
+}
+.site-nav__links li.relative:hover .services-dropdown-menu,
+.services-dropdown-menu:hover,
+.site-nav__links li.relative.dropdown-open .services-dropdown-menu {
+  display: block !important; opacity: 1 !important; visibility: visible !important; pointer-events: auto !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+.site-nav__links li.relative:hover .mega-chevron,
+.site-nav__links li.relative.dropdown-open .mega-chevron {
+  transform: rotate(180deg) !important;
+}
+.site-nav__links li.relative:hover .site-nav__link--has-mega {
+  color: var(--creiden-blue, #00539f) !important;
+}
+.dropdown-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.dropdown-item {
+  display: flex !important; align-items: flex-start !important; gap: 12px !important;
+  padding: 10px 12px !important; border-radius: 12px !important; text-decoration: none !important;
+  transition: background 0.18s ease, transform 0.18s ease !important;
+}
+.dropdown-item:hover { background: #f8fafc !important; transform: translateX(3px) !important; }
+.dropdown-icon {
+  display: grid !important; place-items: center !important; width: 38px !important; height: 38px !important;
+  border-radius: 10px !important; flex-shrink: 0 !important;
+}
+.bg-creiden-blue\/10 { background: rgba(0, 83, 159, 0.1) !important; color: #00539f !important; }
+.bg-creiden-cyan\/10 { background: rgba(0, 192, 243, 0.1) !important; color: #008eb4 !important; }
+.bg-creiden-magenta\/10 { background: rgba(189, 26, 141, 0.1) !important; color: #bd1a8d !important; }
+.bg-creiden-teal\/10 { background: rgba(0, 116, 132, 0.1) !important; color: #007484 !important; }
+.bg-creiden-orange\/10 { background: rgba(254, 102, 37, 0.1) !important; color: #fe6625 !important; }
+.bg-creiden-green\/10 { background: rgba(0, 178, 125, 0.1) !important; color: #008f64 !important; }
+.dropdown-text { display: flex !important; flex-direction: column !important; text-align: left !important; }
+.dropdown-title { font-size: 14px !important; font-weight: 600 !important; color: #1e293b !important; line-height: 1.3 !important; }
+.dropdown-item:hover .dropdown-title { color: #00539f !important; }
+.dropdown-desc { font-size: 11.5px !important; color: #64748b !important; line-height: 1.4 !important; margin-top: 2px !important; }
+.dropdown-footer {
+  display: flex !important; align-items: center !important; justify-content: space-between !important;
+  margin-top: 10px !important; padding-top: 10px !important; border-top: 1px solid #f1f5f9 !important;
+}
+.dropdown-all-btn {
+  display: inline-flex !important; align-items: center !important; gap: 6px !important; font-size: 12.5px !important;
+  font-weight: 600 !important; color: #00539f !important; text-decoration: none !important; padding: 4px 8px !important;
+  border-radius: 6px !important; transition: background 0.15s !important;
+}
+.dropdown-all-btn:hover { background: #f1f5f9 !important; }
+.dropdown-badge-link {
+  display: inline-flex !important; align-items: center !important; gap: 6px !important; font-size: 12px !important;
+  font-weight: 500 !important; color: #475569 !important; text-decoration: none !important; background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important; padding: 4px 10px !important; border-radius: 20px !important;
+}
+.badge-dot { width: 6px !important; height: 6px !important; border-radius: 50% !important; background: #10b981 !important; }
+
+
+/* OrynTech Products Dropdown & Non-Interactive Product Cards */
+.products-dropdown-menu {
+  display: none !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 50% !important;
+  transform: translateX(-50%) translateY(10px) !important;
+  width: 440px !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0,0,0,0.1) !important;
+  padding: 12px !important;
+  z-index: 1000 !important;
+  transition: opacity 0.2s ease, transform 0.2s ease !important;
+}
+.site-nav__links li.relative:hover .products-dropdown-menu,
+.site-nav__links li.relative:focus-within .products-dropdown-menu {
+  display: block !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+.product-menu-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 12px !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  border-bottom: 1px solid #f8fafc !important;
+  cursor: default !important;
+  user-select: none !important;
+}
+.product-menu-item:last-child {
+  border-bottom: none !important;
+}
+.product-menu-item:hover {
+  background: #f8fafc !important;
+}
+.product-menu-icon {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+.product-menu-badge {
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  padding: 2px 8px !important;
+  border-radius: 12px !important;
+  margin-left: auto !important;
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+}
+.product-card-static {
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.product-card-static:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 35px -10px rgba(0, 83, 159, 0.08);
+}
+.product-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  cursor: default;
+  pointer-events: none;
+}
+.product-status-pill .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #0284c7;
+}

@@ -1,29 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
-  <rect width="800" height="500" rx="16" fill="#1E1B4B"/>
-  <rect x="20" y="20" width="760" height="460" rx="12" fill="#312E81" stroke="#6366F1" stroke-width="1.5"/>
-  <rect x="20" y="20" width="760" height="48" rx="12" fill="#3730A3"/>
-  <circle cx="48" cy="44" r="6" fill="#F87171"/>
-  <circle cx="68" cy="44" r="6" fill="#FBBF24"/>
-  <circle cx="88" cy="44" r="6" fill="#34D399"/>
-  <text x="120" y="50" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#E0E7FF">Gerayo — Bus &amp; Fleet Transport Management</text>
-  <rect x="40" y="90" width="460" height="370" rx="8" fill="#1E1B4B"/>
-  <text x="65" y="130" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF">Fleet Route &amp; Dispatch Monitoring</text>
-  <path d="M70 200 Q 180 150 250 240 T 450 320" stroke="#818CF8" stroke-width="6" stroke-dasharray="10 8" fill="none"/>
-  <circle cx="70" cy="200" r="10" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3"/>
-  <circle cx="250" cy="240" r="10" fill="#4F46E5" stroke="#FFFFFF" stroke-width="3"/>
-  <circle cx="450" cy="320" r="12" fill="#10B981" stroke="#FFFFFF" stroke-width="3"/>
-  <rect x="65" y="370" width="200" height="60" rx="6" fill="#312E81"/>
-  <text x="80" y="398" font-family="system-ui, sans-serif" font-size="11" fill="#A5B4FC">SCHEDULE ADHERENCE</text>
-  <text x="80" y="420" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF">Active Dispatch</text>
-  <rect x="520" y="90" width="240" height="370" rx="8" fill="#1E1B4B"/>
-  <text x="540" y="130" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">Live Trips</text>
-  <rect x="540" y="150" width="200" height="65" rx="6" fill="#312E81"/>
-  <text x="555" y="175" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#E0E7FF">Kigali — Musanze</text>
-  <text x="555" y="198" font-family="system-ui, sans-serif" font-size="11" fill="#34D399">On Route • 42 Pax</text>
-  <rect x="540" y="225" width="200" height="65" rx="6" fill="#312E81"/>
-  <text x="555" y="250" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#E0E7FF">Kigali — Huye</text>
-  <text x="555" y="273" font-family="system-ui, sans-serif" font-size="11" fill="#34D399">On Route • 38 Pax</text>
-  <rect x="540" y="300" width="200" height="65" rx="6" fill="#312E81"/>
-  <text x="555" y="325" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#E0E7FF">Kigali — Rubavu</text>
-  <text x="555" y="348" font-family="system-ui, sans-serif" font-size="11" fill="#FBBF24">Boarding • Departs 15:30</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" fill="none">
+  <rect width="800" height="500" rx="16" fill="#f4f7fa"/>
+  <rect x="0.5" y="0.5" width="799" height="499" rx="16" fill="none" stroke="#e2e8f0"/>
+  <path d="M0 16a16 16 0 0 1 16-16h768a16 16 0 0 1 16 16v30H0z" fill="#ffffff"/>
+  <line x1="0" y1="46" x2="800" y2="46" stroke="#e2e8f0"/>
+  <circle cx="26" cy="23" r="5" fill="#e2e8f0"/>
+  <circle cx="44" cy="23" r="5" fill="#e2e8f0"/>
+  <circle cx="62" cy="23" r="5" fill="#e2e8f0"/>
+  <rect x="86" y="14" width="150" height="18" rx="9" fill="#f1f5f9"/>
+  <text x="96" y="27" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#64748b" text-anchor="start">oryntech</text>
+  <text x="252" y="28" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#36454f" text-anchor="start">Gerayo — Fleet Dispatch &amp; Transit Operations</text>
+  <circle cx="770" cy="23" r="9" fill="#00c0f3" opacity="0.15"/>
+  <circle cx="770" cy="23" r="3.5" fill="#00c0f3"/>
+  <rect x="24" y="66" width="468" height="410" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="48" y="96" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#36454f" text-anchor="start">Route &amp; dispatch monitoring</text>
+  <path d="M70 210 Q 180 160 250 250 T 440 330" fill="none" stroke="#00c0f3" stroke-width="4" stroke-dasharray="9 7" stroke-linecap="round" opacity="0.55"/>
+  <circle cx="70" cy="210" r="11" fill="#00c0f3" opacity="0.18"/>
+  <circle cx="70" cy="210" r="6" fill="#00c0f3"/>
+  <circle cx="250" cy="250" r="11" fill="#00c0f3" opacity="0.18"/>
+  <circle cx="250" cy="250" r="6" fill="#00c0f3"/>
+  <circle cx="440" cy="330" r="11" fill="#00b27d" opacity="0.18"/>
+  <circle cx="440" cy="330" r="6" fill="#00b27d"/>
+  <text x="70" y="192" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#64748b" text-anchor="middle">Nyabugogo</text>
+  <text x="250" y="232" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#64748b" text-anchor="middle">Base</text>
+  <text x="440" y="312" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#64748b" text-anchor="middle">Musanze</text>
+  <rect x="48" y="372" width="200" height="80" rx="8" fill="#f1f5f9" stroke="#f1f5f9" stroke-width="1"/>
+  <text x="66" y="400" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#64748b" text-anchor="start">SCHEDULE ADHERENCE</text>
+  <text x="66" y="430" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#00c0f3" text-anchor="start">96.8%</text>
+  <rect x="268" y="372" width="200" height="80" rx="8" fill="#f1f5f9" stroke="#f1f5f9" stroke-width="1"/>
+  <text x="286" y="400" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#64748b" text-anchor="start">BUSES IN SERVICE</text>
+  <text x="286" y="430" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#36454f" text-anchor="start">42</text>
+  <rect x="508" y="66" width="268" height="410" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="532" y="96" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#36454f" text-anchor="start">Live trips</text>
+  <rect x="532" y="116" width="220" height="68" rx="8" fill="#f1f5f9" stroke="#f1f5f9" stroke-width="1"/>
+  <circle cx="552" cy="142" r="4" fill="#00b27d"/>
+  <text x="566" y="146" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#36454f" text-anchor="start">Kigali — Musanze</text>
+  <text x="552" y="168" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">On route · 42 pax</text>
+  <rect x="532" y="202" width="220" height="68" rx="8" fill="#f1f5f9" stroke="#f1f5f9" stroke-width="1"/>
+  <circle cx="552" cy="228" r="4" fill="#00b27d"/>
+  <text x="566" y="232" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#36454f" text-anchor="start">Kigali — Huye</text>
+  <text x="552" y="254" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">On route · 38 pax</text>
+  <rect x="532" y="288" width="220" height="68" rx="8" fill="#f1f5f9" stroke="#f1f5f9" stroke-width="1"/>
+  <circle cx="552" cy="314" r="4" fill="#ffcc32"/>
+  <text x="566" y="318" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#36454f" text-anchor="start">Kigali — Rubavu</text>
+  <text x="552" y="340" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">Boarding · departs 15:30</text>
+  <rect x="532" y="374" width="220" height="68" rx="8" fill="#f1f5f9" stroke="#f1f5f9" stroke-width="1"/>
+  <circle cx="552" cy="400" r="4" fill="#64748b"/>
+  <text x="566" y="404" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#36454f" text-anchor="start">Kigali — Rusizi</text>
+  <text x="552" y="426" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">Scheduled · 16:15</text>
 </svg>
