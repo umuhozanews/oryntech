@@ -368,12 +368,226 @@
   color: var(--creiden-yellow, #ffd200) !important;
 }
 
-/* 9. Ensure Purged Legacy Loaders */
-.app-loader-shell, #app-initial-loader, .cr-legacy-loader, #nextech-preloader {
-  display: none !important;
+/* 9. Authentic Creiden / OrynTech App Loader */
+#app-initial-loader {
+  display: none;
+}
+html[data-app-loading] #app-initial-loader {
+  display: grid !important;
+}
+html[data-app-loading] body {
+  overflow: hidden !important;
+}
+.app-loader-shell {
+  z-index: 100000 !important;
+  background-color: var(--creiden-blue, #00539f) !important;
+  place-items: center;
+  display: grid;
+  position: fixed;
+  inset: 0;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.45s ease;
+  pointer-events: auto;
+}
+.app-loader-shell.is-exiting {
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
+}
+.app-loader-shell__mark-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.app-loader-shell__mark {
+  width: 88px;
+  height: 88px;
+  animation: 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite loader-pulse;
+}
+.app-loader-shell__bar-track {
+  background: rgba(255, 255, 255, 0.18) !important;
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+.app-loader-shell__bar-fill {
+  background: var(--creiden-yellow, #ffcc32) !important;
+  width: 0%;
+  height: 100%;
+  animation: 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards loader-bar;
+}
+@keyframes loader-pulse {
+  0%, 100% {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.42;
+    transform: scale(0.96);
+  }
+}
+@keyframes loader-bar {
+  0% {
+    width: 0%;
+  }
+  60% {
+    width: 75%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-loader-shell__mark { animation: none !important; }
+  .app-loader-shell__bar-fill { width: 100% !important; animation: none !important; }
+}
+
+/* Page Transition Top Bar */
+#site-top-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 999999;
+  background: var(--creiden-yellow, #ffcc32);
+  width: 0%;
+  opacity: 0;
+  pointer-events: none;
+  transition: width 0.35s ease, opacity 0.2s ease;
+  box-shadow: 0 0 10px rgba(255, 204, 50, 0.7);
+}
+#site-top-loader.is-active {
+  opacity: 1;
+  width: 85%;
+}
+#site-top-loader.is-done {
+  width: 100%;
+  opacity: 0;
+  transition: width 0.15s ease, opacity 0.35s ease 0.15s;
+}
+
+/* Hamburger animation into 'X' */
+.site-nav--menu-open .site-nav__burger span {
+  background-color: var(--creiden-white, #ffffff) !important;
+}
+.site-nav--menu-open .site-nav__burger span:nth-child(1) {
+  opacity: 0 !important;
+  transform: translateY(6px);
+}
+.site-nav--menu-open .site-nav__burger span:nth-child(2) {
+  transform: translateY(3px) rotate(45deg) !important;
+}
+.site-nav--menu-open .site-nav__burger span:nth-child(3) {
+  transform: translateY(-3px) rotate(-45deg) !important;
+}
+.site-nav--menu-open .site-nav__brand-mark,
+.site-nav--menu-open .site-nav__wordmark {
+  color: var(--creiden-white, #ffffff) !important;
+}
+
+/* Section Eyebrow Signature Dash Line */
+.eyebrow-marketing {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+.eyebrow-marketing::before {
+  content: "" !important;
+  display: inline-block !important;
+  width: 24px !important;
+  height: 2px !important;
+  border-radius: 9999px !important;
+  background-color: currentColor !important;
+  flex-shrink: 0 !important;
+}
+
+/* Custom Interactive Cursor */
+.cursor-dot, .cursor-ring {
+  pointer-events: none !important;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  z-index: 999999 !important;
+  border-radius: 9999px;
+  mix-blend-mode: difference;
+  will-change: transform;
+  opacity: 0;
+}
+html[data-app-loading] .cursor-ring,
+html[data-app-loading] .cursor-dot {
+  display: none !important;
+  opacity: 0 !important;
+}
+@media (hover: none), (pointer: coarse), (max-width: 800px) {
+  .cursor-dot, .cursor-ring {
+    display: none !important;
+  }
+}
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #ffffff;
+  transition: opacity 0.2s ease;
+}
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid #ffffff;
+  transition: width 0.22s cubic-bezier(0.2, 0, 0, 1),
+              height 0.22s cubic-bezier(0.2, 0, 0, 1),
+              background-color 0.22s ease,
+              border-color 0.22s ease,
+              opacity 0.2s ease;
+}
+.cursor-ring.hover {
+  width: 72px !important;
+  height: 72px !important;
+  border-color: var(--creiden-yellow, #ffcc32) !important;
+  background-color: rgba(255, 204, 50, 0.14) !important;
+}
+.cursor-ring.view {
+  width: 90px !important;
+  height: 90px !important;
+  border-color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+@media (hover: none), (max-width: 800px) {
+  .cursor-dot, .cursor-ring {
+    display: none !important;
+  }
+}
+
+/* Process section connecting line animation */
+.process-step-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0, 0, 1), transform 0.7s cubic-bezier(0.2, 0, 0, 1);
+  will-change: opacity, transform;
+}
+.process-step-reveal.in {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+.process-step-reveal[data-delay="1"].in { transition-delay: 0.08s; }
+.process-step-reveal[data-delay="2"].in { transition-delay: 0.16s; }
+.process-step-reveal[data-delay="3"].in { transition-delay: 0.24s; }
+.process-step-reveal[data-delay="4"].in { transition-delay: 0.32s; }
+.process-step-reveal[data-delay="5"].in { transition-delay: 0.40s; }
+
+.process-line-bar {
+  opacity: 1 !important;
+  transform-origin: left !important;
+  transform: scaleX(0) !important;
+  transition: transform 1.8s cubic-bezier(0.2, 0, 0, 1) !important;
+}
+.process-line-bar.in {
+  opacity: 1 !important;
+  transform: scaleX(1) !important;
 }
 
 /* =====================================================================

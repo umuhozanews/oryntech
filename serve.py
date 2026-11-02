@@ -31,6 +31,25 @@ class CleanURLHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
         # Support clean URLs: /about -> /about.html or /about/index.html
         path = self.path.split("?")[0].split("#")[0]
+
+        # Intercept /_next/image?url=...
+        if path == "/_next/image" and "?" in self.path:
+            import urllib.parse
+            query = self.path.split("?", 1)[1]
+            params = urllib.parse.parse_qs(query)
+            raw_url = params.get("url", [""])[0]
+            if raw_url:
+                filename = os.path.basename(urllib.parse.unquote(raw_url))
+                if os.path.exists(os.path.join("assets", filename)):
+                    self.path = "/assets/" + filename
+                    return super().do_GET()
+            self.send_response(200)
+            self.send_header("Content-Type", "image/png")
+            self.send_header("Content-Length", "68")
+            self.end_headers()
+            self.wfile.write(b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x06\x00\x00\x00\x1f\x15c4\x00\x00\x00\rIDATx\x9cc`\x00\x00\x00\x02\x00\x01H\xaf\xa4q\x00\x00\x00\x00IEND\xaeB`\x82")
+            return
+
         full_path = self.translate_path(path)
 
         if not os.path.exists(full_path):

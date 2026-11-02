@@ -6,3 +6,6 @@ scratch.py
 team.json.bak
 *_shot.png
 *_crop.png
+crop_*.png
+scratch/
+*.old.*

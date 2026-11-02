@@ -2,8 +2,60 @@
   "eyebrow": "OUR TEAM",
   "heading": "The People Behind OrynTech",
   "intro": "The engineers, designers and delivery leads who build and run the systems our clients depend on.",
-
-  "_shape": "Each member: name, title, bio, optional photo (path under /assets/oryntech/team/) and optional linkedin URL. Photos render as square images; members without a photo fall back to an initials avatar.",
-
-  "members": []
+  "members": [
+    {
+      "name": "Lucky Prince",
+      "title": "Chief Executive Officer & Founder",
+      "bio": "Leads OrynTech's strategic vision and product engineering, partnering with founders and enterprise leaders across East Africa to scale high-impact digital systems.",
+      "photo": "/assets/team/lucky-prince.jpeg"
+    },
+    {
+      "name": "Gatete Boy",
+      "title": "Lead Developer",
+      "bio": "Architects robust backend systems, distributed cloud infrastructure, and core application engines powering OrynTech's flagship platforms.",
+      "photo": "/assets/team/gatete-boy.jpeg?v=2"
+    },
+    {
+      "name": "Bizima Chance",
+      "title": "Senior Full Stack Engineer",
+      "bio": "Specializes in scalable web platforms, high-throughput APIs, and mission-critical enterprise workflows built on modern web stacks.",
+      "photo": "/assets/team/bizima-chance.jpeg"
+    },
+    {
+      "name": "Manziyase Thierry",
+      "title": "Senior Software Engineer",
+      "bio": "Focuses on complex backend services, data modeling, and performance optimization for data-intensive client platforms.",
+      "photo": "/assets/team/manziyase-thierry.jpeg"
+    },
+    {
+      "name": "Mpanonziza Yvane",
+      "title": "UI/UX & Product Designer",
+      "bio": "Crafts intuitive user journeys, design systems, and responsive interfaces that make complicated digital workflows effortless.",
+      "photo": "/assets/team/mpanonziza-yvane.jpeg"
+    },
+    {
+      "name": "Mugisha Heroice",
+      "title": "Mobile & Systems Engineer",
+      "bio": "Builds responsive cross-platform mobile apps with Flutter and React Native, delivering native performance on iOS and Android.",
+      "photo": "/assets/team/mugisha-heroice.jpeg"
+    },
+    {
+      "name": "Munezero Innocent",
+      "title": "Frontend Engineer",
+      "bio": "Develops snappy, accessible web applications and dashboards with modern JavaScript frameworks and strict design fidelity.",
+      "photo": "/assets/team/munezer-innocent.jpeg"
+    },
+    {
+      "name": "Pacifique",
+      "title": "DevOps & Cloud Engineer",
+      "bio": "Manages container orchestration, CI/CD automation pipelines, and multi-cloud reliability across production environments.",
+      "photo": "/assets/team/pacifique.jpeg"
+    },
+    {
+      "name": "Rwego Issa",
+      "title": "Product & Delivery Lead",
+      "bio": "Coordinates agile sprints, stakeholder alignment, and feature release cycles to ensure on-time delivery with zero compromise on quality.",
+      "photo": "/assets/team/rwego-issa.jpeg"
+    }
+  ]
 }

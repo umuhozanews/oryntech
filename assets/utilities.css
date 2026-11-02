@@ -232,3 +232,8 @@
 @media (min-width: 1024px) {
   [class~="min-[1024px]:py-20"] { padding-block: 5rem; }
 }
+
+/* --- aspect ratio & object positioning --- */
+.aspect-square { aspect-ratio: 1 / 1; }
+.object-top { object-position: top center; }
+.object-center { object-position: center; }
