@@ -1,0 +1,8 @@
+/*
+  X-Content-Type-Options: nosniff
+
+/assets/animations.css
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/scroll_animator.js
+  Cache-Control: public, max-age=0, must-revalidate
