@@ -653,6 +653,321 @@
   // =========================================================================
   // Initialization Orchestrator
   // =========================================================================
+  // =========================================================================
+  // 11. FAQ Accordions Interactive Engine
+  // =========================================================================
+  function initFaqAccordions() {
+    document.addEventListener('click', function (e) {
+      const btn = e.target.closest('button[aria-controls]');
+      if (!btn) return;
+
+      const panelId = btn.getAttribute('aria-controls');
+      if (!panelId) return;
+
+      const panel = document.getElementById(panelId) || document.querySelector('#' + CSS.escape(panelId));
+      if (!panel) return;
+
+      // Check if it's an accordion item (has faq in id, or panel has role="region" or grid class)
+      const isFaq = panelId.includes('faq') || panel.getAttribute('role') === 'region' || panel.classList.contains('grid');
+      if (!isFaq) return;
+
+      e.preventDefault();
+      const isCurrentlyExpanded = btn.getAttribute('aria-expanded') === 'true';
+      const willExpand = !isCurrentlyExpanded;
+
+      // Close sibling accordions in the same container for clean presentation
+      const container = btn.closest('.reveal') ? btn.closest('.reveal').parentElement : btn.parentElement.parentElement;
+      if (container && willExpand) {
+        container.querySelectorAll('button[aria-controls]').forEach(sibBtn => {
+          if (sibBtn !== btn && sibBtn.getAttribute('aria-expanded') === 'true') {
+            sibBtn.setAttribute('aria-expanded', 'false');
+            const sibPanelId = sibBtn.getAttribute('aria-controls');
+            const sibPanel = document.getElementById(sibPanelId);
+            if (sibPanel) {
+              sibPanel.classList.remove('grid-rows-[1fr]');
+              sibPanel.classList.add('grid-rows-[0fr]');
+              sibPanel.style.gridTemplateRows = '0fr';
+            }
+            const sibSvg = sibBtn.querySelector('svg');
+            if (sibSvg) {
+              sibSvg.style.transform = 'rotate(0deg)';
+            }
+            const sibCircle = sibBtn.querySelector('.rounded-full');
+            if (sibCircle) {
+              sibCircle.classList.remove('bg-[#00539F]', 'text-white');
+              sibCircle.classList.add('bg-bg-2', 'text-fg-2');
+              sibCircle.style.backgroundColor = '';
+              sibCircle.style.color = '';
+              sibCircle.style.borderColor = '';
+            }
+          }
+        });
+      }
+
+      // Toggle target button
+      btn.setAttribute('aria-expanded', willExpand ? 'true' : 'false');
+      if (willExpand) {
+        panel.classList.remove('grid-rows-[0fr]');
+        panel.classList.add('grid-rows-[1fr]');
+        panel.style.gridTemplateRows = '1fr';
+      } else {
+        panel.classList.remove('grid-rows-[1fr]');
+        panel.classList.add('grid-rows-[0fr]');
+        panel.style.gridTemplateRows = '0fr';
+      }
+
+      // Rotate plus/minus icon
+      const svg = btn.querySelector('svg');
+      if (svg) {
+        svg.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        svg.style.transform = willExpand ? 'rotate(45deg)' : 'rotate(0deg)';
+      }
+
+      // Toggle active circle background
+      const circle = btn.querySelector('.rounded-full');
+      if (circle) {
+        circle.style.transition = 'background-color 0.25s, color 0.25s, border-color 0.25s';
+        if (willExpand) {
+          circle.classList.remove('bg-bg-2', 'text-fg-2');
+          circle.classList.add('bg-[#00539F]', 'text-white');
+          circle.style.backgroundColor = '#00539F';
+          circle.style.color = '#ffffff';
+          circle.style.borderColor = '#00539F';
+        } else {
+          circle.classList.remove('bg-[#00539F]', 'text-white');
+          circle.classList.add('bg-bg-2', 'text-fg-2');
+          circle.style.backgroundColor = '';
+          circle.style.color = '';
+          circle.style.borderColor = '';
+        }
+      }
+    });
+  }
+
+  // =========================================================================
+  // 12. Interactive Cookie Consent & Preferences Engine
+  // =========================================================================
+  function initCookieConsent() {
+    const STORAGE_KEY = 'oryntech_cookie_consent';
+
+    function getConsent() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function setConsent(choice, analytics) {
+      try {
+        const data = {
+          choice: choice,
+          analytics: analytics !== false,
+          timestamp: Date.now()
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        localStorage.setItem('creiden_cookie_consent', JSON.stringify({
+          choice: choice === 'accepted' ? 'allow' : 'reject',
+          analyticsAllowed: analytics !== false
+        }));
+      } catch (e) {}
+      updateCookiesPageControls();
+    }
+
+    function checkAndShowBanner() {
+      const consent = getConsent();
+      if (consent && consent.choice) return;
+      if (document.getElementById('oryntech-cookie-banner')) return;
+
+      const banner = document.createElement('div');
+      banner.id = 'oryntech-cookie-banner';
+      banner.setAttribute('role', 'dialog');
+      banner.setAttribute('aria-label', 'Cookie consent');
+      banner.className = 'transition-all duration-500 ease-out';
+      banner.style.cssText = 'position:fixed;bottom:20px;left:20px;right:20px;z-index:999999;margin-left:auto;margin-right:auto;max-width:860px;border-radius:16px;border:1px solid rgba(255,255,255,0.15);background:rgba(9,13,22,0.95);padding:20px;box-shadow:0 20px 40px rgba(0,0,0,0.5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);opacity:0;transform:translateY(24px);box-sizing:border-box;font-family:system-ui,-apple-system,sans-serif;color:#fff;';
+      banner.innerHTML = `
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="flex-1 pr-2">
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+              <h4 class="text-sm font-bold text-white tracking-wide">Cookie & Privacy Preferences</h4>
+            </div>
+            <p class="text-xs sm:text-[13px] leading-relaxed text-gray-300">
+              We use essential cookies for technical operations and analytics to improve our digital products. You can accept all or customize preferences anytime. Read our <a href="/en/cookies.html" class="text-[#00539F] underline hover:text-white transition-colors" style="color:#60a5fa;">Cookie Policy</a>.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2.5 shrink-0 w-full sm:w-auto">
+            <button id="oryn-cookie-reject-btn" type="button" class="flex-1 sm:flex-none px-4 py-2 text-xs font-semibold text-gray-300 border border-white/20 rounded-xl hover:bg-white/10 transition-colors cursor-pointer" style="cursor:pointer;">
+              Essential Only
+            </button>
+            <button id="oryn-cookie-accept-btn" type="button" class="flex-1 sm:flex-none px-5 py-2 text-xs font-bold text-white bg-[#00539F] hover:bg-[#003d75] rounded-xl shadow-md transition-colors cursor-pointer" style="cursor:pointer;background-color:#00539F;">
+              Accept All
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(banner);
+
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          banner.style.opacity = '1';
+          banner.style.transform = 'translateY(0)';
+        }, 150);
+      });
+
+      const acceptBtn = banner.querySelector('#oryn-cookie-accept-btn');
+      const rejectBtn = banner.querySelector('#oryn-cookie-reject-btn');
+
+      function dismissBanner(choice, analytics) {
+        setConsent(choice, analytics);
+        banner.style.opacity = '0';
+        banner.style.transform = 'translateY(24px)';
+        setTimeout(() => banner.remove(), 400);
+      }
+
+      if (acceptBtn) acceptBtn.addEventListener('click', () => dismissBanner('accepted', true));
+      if (rejectBtn) rejectBtn.addEventListener('click', () => dismissBanner('essential', false));
+    }
+
+    function openPreferencesModal() {
+      const existing = document.getElementById('oryntech-cookie-modal');
+      if (existing) existing.remove();
+
+      const current = getConsent() || { choice: 'essential', analytics: false };
+      const isAnalyticsOn = current.analytics !== false;
+
+      const modal = document.createElement('div');
+      modal.id = 'oryntech-cookie-modal';
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('aria-labelledby', 'cookie-modal-title');
+      modal.className = 'fixed inset-0 z-[1000000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300';
+      modal.innerHTML = `
+        <div class="relative w-full max-w-[540px] rounded-2xl border border-white/15 bg-[#090d16] p-6 shadow-2xl text-left" style="background:#090d16;color:#ffffff;">
+          <div class="flex items-center justify-between pb-4 border-b border-white/10" style="border-bottom:1px solid rgba(255,255,255,0.1);">
+            <h3 id="cookie-modal-title" class="text-lg font-bold text-white" style="color:#ffffff;">Cookie Preferences</h3>
+            <button id="oryn-modal-close-btn" type="button" class="text-gray-400 hover:text-white p-1 rounded-lg transition-colors cursor-pointer" aria-label="Close" style="cursor:pointer;background:none;border:none;color:#9ca3af;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+          </div>
+          <div class="py-4 flex flex-col gap-4 text-sm text-gray-300">
+            <div class="flex items-center justify-between p-3.5 rounded-xl bg-white/5 border border-white/5" style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:rgba(255,255,255,0.05);border-radius:12px;margin-bottom:10px;">
+              <div>
+                <p class="font-semibold text-white" style="margin:0;color:#fff;">Strictly Necessary Cookies</p>
+                <p class="text-xs text-gray-400 mt-0.5" style="margin:4px 0 0;font-size:12px;color:#9ca3af;">Required for core website security, authentication & navigation.</p>
+              </div>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-500/30" style="padding:4px 10px;font-size:12px;background:rgba(16,185,129,0.2);color:#6ee7b7;border-radius:6px;">Always Active</span>
+            </div>
+            <div class="flex items-center justify-between p-3.5 rounded-xl bg-white/5 border border-white/5" style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:rgba(255,255,255,0.05);border-radius:12px;">
+              <div style="padding-right:12px;">
+                <p class="font-semibold text-white" style="margin:0;color:#fff;">Analytics & Performance</p>
+                <p class="text-xs text-gray-400 mt-0.5" style="margin:4px 0 0;font-size:12px;color:#9ca3af;">Helps us understand visitor engagement to improve OrynTech products.</p>
+              </div>
+              <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer;">
+                <input type="checkbox" id="oryn-analytics-toggle" ${isAnalyticsOn ? 'checked' : ''} style="opacity:0;width:0;height:0;">
+                <span id="oryn-toggle-slider" style="position:absolute;top:0;left:0;right:0;bottom:0;background-color:${isAnalyticsOn ? '#00539F' : '#374151'};border-radius:24px;transition:0.3s;"></span>
+                <span id="oryn-toggle-knob" style="position:absolute;height:18px;width:18px;left:${isAnalyticsOn ? '22px' : '3px'};bottom:3px;background-color:white;border-radius:50%;transition:0.3s;"></span>
+              </label>
+            </div>
+          </div>
+          <div class="flex items-center justify-end gap-3 pt-4 border-t border-white/10" style="display:flex;justify-content:flex-end;gap:12px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.1);">
+            <button id="oryn-modal-save-btn" type="button" class="px-6 py-2.5 text-xs font-bold text-white bg-[#00539F] hover:bg-[#003d75] rounded-xl transition-colors cursor-pointer" style="padding:10px 24px;background:#00539F;color:#fff;border:none;border-radius:12px;font-weight:700;cursor:pointer;">
+              Save Preferences
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+
+      const toggle = modal.querySelector('#oryn-analytics-toggle');
+      const slider = modal.querySelector('#oryn-toggle-slider');
+      const knob = modal.querySelector('#oryn-toggle-knob');
+      if (toggle && slider && knob) {
+        toggle.addEventListener('change', () => {
+          if (toggle.checked) {
+            slider.style.backgroundColor = '#00539F';
+            knob.style.left = '22px';
+          } else {
+            slider.style.backgroundColor = '#374151';
+            knob.style.left = '3px';
+          }
+        });
+      }
+
+      modal.querySelector('#oryn-modal-close-btn').addEventListener('click', () => modal.remove());
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.remove();
+      });
+
+      modal.querySelector('#oryn-modal-save-btn').addEventListener('click', () => {
+        const analytics = toggle ? toggle.checked : false;
+        setConsent(analytics ? 'accepted' : 'essential', analytics);
+        modal.remove();
+        showToast('Cookie preferences saved successfully.');
+      });
+    }
+
+    function updateCookiesPageControls() {
+      const consent = getConsent();
+      const statusBadge = document.getElementById('cookie-status-badge');
+      if (statusBadge) {
+        if (consent && consent.choice === 'accepted') {
+          statusBadge.innerHTML = '<span style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:9999px;font-size:12px;font-weight:700;background:rgba(16,185,129,0.15);color:#10b981;border:1px solid rgba(16,185,129,0.3);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> All Cookies Accepted</span>';
+        } else if (consent && consent.choice === 'essential') {
+          statusBadge.innerHTML = '<span style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:9999px;font-size:12px;font-weight:700;background:rgba(6,182,212,0.15);color:#06b6d4;border:1px solid rgba(6,182,212,0.3);">Essential Cookies Only</span>';
+        } else {
+          statusBadge.innerHTML = '<span style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:9999px;font-size:12px;font-weight:700;background:rgba(245,158,11,0.15);color:#f59e0b;border:1px solid rgba(245,158,11,0.3);">Not Configured</span>';
+        }
+      }
+    }
+
+    function showToast(msg) {
+      let toast = document.getElementById('oryn-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'oryn-toast';
+        toast.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:1000002;padding:12px 20px;border-radius:12px;background:#00539F;color:#ffffff;font-size:13px;font-weight:600;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;transform:translateY(12px);opacity:0;';
+        document.body.appendChild(toast);
+      }
+      toast.innerText = msg;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0)';
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(12px)';
+      }, 3000);
+    }
+
+    // Connect footer "Cookie Preferences" button & cookie policy page buttons
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      const text = btn.textContent.trim().toLowerCase();
+
+      if (text === 'cookie preferences' || text === 'customize preferences' || btn.id === 'cookie-page-customize') {
+        e.preventDefault();
+        openPreferencesModal();
+      } else if (btn.id === 'cookie-page-accept-all') {
+        e.preventDefault();
+        setConsent('accepted', true);
+        showToast('All cookies accepted.');
+      } else if (btn.id === 'cookie-page-essential-only') {
+        e.preventDefault();
+        setConsent('essential', false);
+        showToast('Essential cookies configured.');
+      }
+    });
+
+    checkAndShowBanner();
+    updateCookiesPageControls();
+  }
+
+  // =========================================================================
+  // Initialization Orchestrator
+  // =========================================================================
   function initAll() {
     initNavigation();
     initCustomCursor();
@@ -661,6 +976,8 @@
     initTestimonialsSlider();
     initMarquees();
     initPageTransitions();
+    initFaqAccordions();
+    initCookieConsent();
   }
 
   if (document.readyState === 'loading') {
