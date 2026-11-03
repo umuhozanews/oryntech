@@ -541,35 +541,86 @@
     const mobileMenu = document.getElementById('mobile-menu');
 
     if (burger && mobileMenu) {
-      burger.addEventListener('click', (e) => {
-        e.preventDefault();
+      function openMobileMenu() {
+        burger.setAttribute('aria-expanded', 'true');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        mobileMenu.classList.add('is-open', 'open');
+        siteNav.classList.add('site-nav--menu-open');
+        document.body.style.overflow = 'hidden';
+        mobileMenu.querySelectorAll('a, button').forEach(el => el.removeAttribute('tabindex'));
+        const cookieBanner = document.getElementById('oryntech-cookie-banner');
+        if (cookieBanner) cookieBanner.style.display = 'none';
+      }
+
+      function closeMobileMenu() {
+        burger.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        mobileMenu.classList.remove('is-open', 'open');
+        siteNav.classList.remove('site-nav--menu-open');
+        document.body.style.overflow = '';
+        mobileMenu.querySelectorAll('a, button').forEach(el => el.setAttribute('tabindex', '-1'));
+        const cookieBanner = document.getElementById('oryntech-cookie-banner');
+        if (cookieBanner) cookieBanner.style.display = 'block';
+      }
+
+      function toggleMobileMenu(e) {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
         const isOpen = burger.getAttribute('aria-expanded') === 'true';
-        burger.setAttribute('aria-expanded', String(!isOpen));
-        mobileMenu.setAttribute('aria-hidden', String(isOpen));
-        mobileMenu.classList.toggle('is-open', !isOpen);
-        siteNav.classList.toggle('site-nav--menu-open', !isOpen);
-        document.body.style.overflow = isOpen ? '' : 'hidden';
-      });
+        if (isOpen) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
+      }
+
+      burger.addEventListener('click', toggleMobileMenu);
+
+      // Services Submenu Toggle in Mobile Menu
+      const expandBtn = mobileMenu.querySelector('.mobile-menu__expand');
+      if (expandBtn) {
+        let submenu = mobileMenu.querySelector('#mobile-menu-Services-submenu');
+        if (!submenu) {
+          submenu = document.createElement('ul');
+          submenu.id = 'mobile-menu-Services-submenu';
+          submenu.className = 'mobile-menu__sub';
+          submenu.style.cssText = 'display:none;padding:12px 0 8px 16px;list-style:none;margin:0;gap:12px;';
+          submenu.innerHTML = `
+            <li><a href="./services.html" style="color:rgba(255,255,255,0.85);font-size:18px;font-weight:500;text-decoration:none;">Web Platforms</a></li>
+            <li><a href="./services.html" style="color:rgba(255,255,255,0.85);font-size:18px;font-weight:500;text-decoration:none;">Mobile Apps</a></li>
+            <li><a href="./services.html" style="color:rgba(255,255,255,0.85);font-size:18px;font-weight:500;text-decoration:none;">AI &amp; Data</a></li>
+            <li><a href="./services.html" style="color:rgba(255,255,255,0.85);font-size:18px;font-weight:500;text-decoration:none;">LMS &amp; E-Learning</a></li>
+            <li><a href="./services.html" style="color:rgba(255,255,255,0.85);font-size:18px;font-weight:500;text-decoration:none;">Ecommerce</a></li>
+            <li><a href="./services.html" style="color:rgba(255,255,255,0.85);font-size:18px;font-weight:500;text-decoration:none;">Dedicated Teams</a></li>
+          `;
+          expandBtn.closest('.mobile-menu__item').appendChild(submenu);
+          submenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
+        }
+
+        expandBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const isExp = expandBtn.getAttribute('aria-expanded') === 'true';
+          expandBtn.setAttribute('aria-expanded', String(!isExp));
+          submenu.style.display = isExp ? 'none' : 'grid';
+          const icon = expandBtn.querySelector('svg');
+          if (icon) {
+            icon.style.transform = isExp ? 'rotate(0deg)' : 'rotate(180deg)';
+          }
+        });
+      }
 
       // Close on link click
       mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          burger.setAttribute('aria-expanded', 'false');
-          mobileMenu.setAttribute('aria-hidden', 'true');
-          mobileMenu.classList.remove('is-open');
-          siteNav.classList.remove('site-nav--menu-open');
-          document.body.style.overflow = '';
-        });
+        link.addEventListener('click', closeMobileMenu);
       });
 
       // Close on Escape key
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) {
-          burger.setAttribute('aria-expanded', 'false');
-          mobileMenu.setAttribute('aria-hidden', 'true');
-          mobileMenu.classList.remove('is-open');
-          siteNav.classList.remove('site-nav--menu-open');
-          document.body.style.overflow = '';
+        if (e.key === 'Escape' && (mobileMenu.classList.contains('is-open') || mobileMenu.classList.contains('open'))) {
+          closeMobileMenu();
         }
       });
     }
@@ -606,6 +657,11 @@
   function initMarquees() {
     document.querySelectorAll('.logo-marquee-module__tf3V_a__container').forEach(container => {
       container.classList.add('auto-scroll');
+      
+      // Ensure touch on mobile does not permanently pause marquee
+      container.addEventListener('touchend', () => {
+        container.style.animationPlayState = 'running';
+      }, { passive: true });
     });
   }
 
